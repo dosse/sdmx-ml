@@ -1,0 +1,39 @@
+Release Notes:
+
+2011-04-18: INITIAL RELEASE
+
+2011-07-14: BUG FIXES
+			
+				SDMXMessage.xsd: Documentation of Structure updated to remove references to stand-alone concepts.
+				SDMXStructure.xsd: Documentation of StructureType/Concepts and ConceptTypes updated to remove references to stand-alone concepts.
+				SDMXStructureConcept.xsd: documentation of schema file updated to remove references to stand-alone concepts.
+				SDMXStructureStructureSet.xsd: StructureMapType/ComponenetMap maxOccurs changed from default (1) to unbounded.
+
+
+
+2020-07: VTL Updates
+		
+			In the "schemas" folder:
+				SDMXCommonReferences.xsd: References were added for new VTL transformation objects.
+
+				SDMXMessage.xsd: Query messages were added for new VTL transformation objects,  
+						 documentation spelling errors were corrected.
+	
+				SDMXQuery.xsd: An import of the new VTL transformation query module was added.
+	
+				SDMXStructure.xsd: An import of the new VTL transformation structure module was added,
+						   the VTL transformation objects we added to the structure payload; 
+						   the documentation of ConceptsType was also updated to remove the incorrect reference to stand-alone concepts.
+
+				SDMXStructureBase.xsd: A new abstract type for un-nested items was created 
+						       to simplify the further derivation for the new VTL transformation types.
+
+				SDMXQueryTransformation.xsd: This new module defines the structures for querying VTL transformation objects.
+
+				SMDXStructureTransformation.xsd: This new module defines the structures for defining VTL transformation objects.
+
+				VTL Sample 1  added
+			In the "samples" folder:				
+				VTL folder added
+				VTL Sample 1  added
+				VTL Sample 2  added 
