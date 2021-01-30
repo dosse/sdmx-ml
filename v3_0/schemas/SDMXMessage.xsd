@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright SDMX 2021 - http://www.sdmx.org -->
-<xs:schema xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" xmlns:message="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" xmlns:footer="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message/footer" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/structure" xmlns:registry="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/registry" xmlns:dsd="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/structurespecific" xmlns:metadata="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/generic" xmlns:msd="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/structurespecific" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified">
+<xs:schema xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" xmlns:message="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" xmlns:footer="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message/footer" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/structure" xmlns:registry="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/registry" xmlns:dsd="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/structurespecific" xmlns:metadata="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/generic" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified">
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message/footer" schemaLocation="SDMXMessageFooter.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" schemaLocation="SDMXCommon.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/structure" schemaLocation="SDMXStructure.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/registry" schemaLocation="SDMXRegistry.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/structurespecific" schemaLocation="SDMXDataStructureSpecific.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/generic" schemaLocation="SDMXMetadataGeneric.xsd"/>
-	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/structurespecific" schemaLocation="SDMXMetadataStructureSpecific.xsd"/>
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
 	
 	<xs:annotation>
@@ -96,27 +95,7 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
-	
-   <xs:element name="StructureSpecificMetadata" type="StructureSpecificMetadataType">
-      <xs:annotation>
-         <xs:documentation>StructureSpecificMetadata contains reported metadata in a format which is specific to the metadata structure definitions which define the structure of the metadata being reported. This format allows for validation of the metadata against the intended structure. Note that the each metadata set provided will be based on a metadata structure specific schema.</xs:documentation>
-      </xs:annotation>
-   </xs:element>
-   <xs:complexType name="StructureSpecificMetadataType">
-      <xs:annotation>
-         <xs:documentation>StructureSpecificMetadataType defines the structure of a structure specific metadata message. Note that the metadata set payload type is abstract, and therefore it will have to be assigned a type in an instance. This type must be derived from the base type referenced. This base type defines a general structure which can be followed to allow for generic processing of the data even if the exact details of the data structure specific format are not known.</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:restriction base="MessageType">
-            <xs:sequence>
-               <xs:element name="Header" type="StructureSpecificMetadataHeaderType"/>
-               <xs:element name="MetadataSet" type="msd:MetadataSetType" minOccurs="0" maxOccurs="unbounded"/>
-               <xs:element ref="footer:Footer" minOccurs="0"/>
-            </xs:sequence>
-         </xs:restriction>
-      </xs:complexContent>
-   </xs:complexType>
-	
+
 	<!-- Registry Messages -->
 	
 	<xs:element name="RegistryInterface" type="RegistryInterfaceType">
