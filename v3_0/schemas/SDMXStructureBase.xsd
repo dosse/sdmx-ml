@@ -326,6 +326,11 @@
 					<xs:documentation>Reporting the associated attribute is not mandatory - a value may  be supplied, but is not required.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+			<xs:enumeration value="Metadata">
+				<xs:annotation>
+					<xs:documentation>The associated attribute is reported as reference metadata.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
 		</xs:restriction>
 	</xs:simpleType>
 	
