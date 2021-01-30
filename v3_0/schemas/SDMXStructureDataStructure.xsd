@@ -116,7 +116,7 @@
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
-					<xs:element name="LocalRepresentation" type="SimpleDataStructureRepresentationType" minOccurs="0"/>
+					<xs:element name="LocalRepresentation" type="AttributeRepresentationType" minOccurs="0"/>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>	
@@ -160,7 +160,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:sequence>
-				<xs:element name="Dimension" type="common:LocalDimensionReferenceType" maxOccurs="unbounded">
+				<xs:element name="Dimension" type="common:OptionalLocalDimensionReferenceType" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>This is used to reference dimensions in the data structure definition on which the value of this attribute depends. An attribute using this relationship can be either a group, series (or section), or observation level attribute. The attachment level of the attribute will be determined by the data format and which dimensions are referenced.</xs:documentation>
 					</xs:annotation>
@@ -212,7 +212,7 @@
 			<xs:documentation>ReportingYearStartDayRepresentationType defines the representation for the reporting year start day attribute. Enumerated values are not allowed and the text format is fixed to be a day and month in the ISO 8601 format of '--MM-DD'.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="SimpleDataStructureRepresentationType">
+			<xs:restriction base="AttributeRepresentationType">
 				<xs:sequence>
 					<xs:element name="TextFormat" type="ReportingYearStartDayTextFormatType"/>
 				</xs:sequence>
@@ -510,6 +510,23 @@
 			<xs:restriction base="RepresentationType">
 				<xs:choice>
 					<xs:element name="TextFormat" type="SimpleComponentTextFormatType"/>
+					<xs:sequence>
+						<xs:element name="Enumeration" type="common:ItemSchemeReferenceBaseType"/>
+						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
+					</xs:sequence>
+				</xs:choice>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="AttributeRepresentationType">
+		<xs:annotation>
+			<xs:documentation>AttributeRepresentationType defines the representation for a data attribute. A data attribute can be text (including XHTML and multi-lingual values) or an enumerated value.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="RepresentationType">
+				<xs:choice>
+					<xs:element name="TextFormat" type="BasicComponentTextFormatType"/>
 					<xs:sequence>
 						<xs:element name="Enumeration" type="common:ItemSchemeReferenceBaseType"/>
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>

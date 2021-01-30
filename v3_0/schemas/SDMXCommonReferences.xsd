@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright SDMX 2021 - http://www.sdmx.org -->
-<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common">
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" version="2.1_20130301">
 
 	
 	<xs:annotation>
@@ -2455,6 +2455,14 @@
 					<xs:element name="Ref" type="LocalDimensionRefType" form="unqualified"/>
 				</xs:sequence>
 			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="OptionalLocalDimensionReferenceType">
+		<xs:complexContent>
+			<xs:extension base="LocalDimensionReferenceType">
+				<xs:attribute name="optional" type="xs:boolean" default="false"/>
+			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 
