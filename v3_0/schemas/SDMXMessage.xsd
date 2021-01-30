@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright SDMX 2021 - http://www.sdmx.org -->
-<xs:schema xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" xmlns:message="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" xmlns:footer="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message/footer" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/structure" xmlns:registry="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/registry" xmlns:data="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/generic" xmlns:dsd="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/structurespecific" xmlns:metadata="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/generic" xmlns:msd="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/structurespecific" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified">
+<xs:schema xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" xmlns:message="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message" xmlns:footer="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message/footer" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" xmlns:structure="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/structure" xmlns:registry="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/registry" xmlns:dsd="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/structurespecific" xmlns:metadata="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/generic" xmlns:msd="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/structurespecific" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xml="http://www.w3.org/XML/1998/namespace" elementFormDefault="qualified">
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/message/footer" schemaLocation="SDMXMessageFooter.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" schemaLocation="SDMXCommon.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/structure" schemaLocation="SDMXStructure.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/registry" schemaLocation="SDMXRegistry.xsd"/>
-	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/generic" schemaLocation="SDMXDataGeneric.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/structurespecific" schemaLocation="SDMXDataStructureSpecific.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/generic" schemaLocation="SDMXMetadataGeneric.xsd"/>
 	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/metadata/structurespecific" schemaLocation="SDMXMetadataStructureSpecific.xsd"/>
@@ -53,49 +52,7 @@
 	</xs:complexType>
 	
 	<!-- Data Messages -->
-	
-	<xs:element name="GenericData" type="GenericDataType">
-		<xs:annotation>
-			<xs:documentation>GenericData is used to convey data in a non data structure specific form. Data sets in this message will be each have a related structure specification in the header, which states the data structure the data conforms to and how the data is organised (i.e. the observation dimension).</xs:documentation>
-		</xs:annotation>
-	</xs:element>
 
-	<xs:complexType name="GenericDataType">
-		<xs:annotation>
-			<xs:documentation>GenericDataType defines the contents of a generic data message.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="MessageType">
-				<xs:sequence>
-					<xs:element name="Header" type="GenericDataHeaderType"/>
-					<xs:element name="DataSet" type="data:DataSetType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element ref="footer:Footer" minOccurs="0"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
-	</xs:complexType>
-	
-	<xs:element name="GenericTimeSeriesData" type="GenericTimeSeriesDataType">
-		<xs:annotation>
-			<xs:documentation>GenericTimeSeriesData is a special derivation of the generic data message which only allows for time series oriented date (i.e. the observation dimension must be time). Although this is a different message, the content of this message will be exactly the same as a generic data message that specifies time as the observation dimension; therefore no additional processing requirements are necessary. This message is intended to only be used when it is necessary to restrict an exchange to being only time series based data.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	
-	<xs:complexType name="GenericTimeSeriesDataType">
-		<xs:annotation>
-			<xs:documentation>GenericTimeSeriesDataType defines the structure of the generic time series data message.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="GenericDataType">
-				<xs:sequence>
-					<xs:element name="Header" type="GenericTimeSeriesDataHeaderType"/>
-					<xs:element name="DataSet" type="data:TimeSeriesDataSetType" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element ref="footer:Footer" minOccurs="0"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>	
-	</xs:complexType>
-	
    <xs:element name="StructureSpecificData" type="StructureSpecificDataType">
       <xs:annotation>
          <xs:documentation>StructureSpecificData is used to convey data structure specific according to data structure definition. The payload of this message (i.e. the data sets) will be based on XML schemas which are specific to the data structure definition and the orientation (i.e. the observation dimension) of the data.</xs:documentation>
