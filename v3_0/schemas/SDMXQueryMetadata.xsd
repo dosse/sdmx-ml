@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright SDMX 2010 - http://www.sdmx.org -->
-<xs:schema elementFormDefault="qualified" targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query" xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/query" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- Copyright SDMX 2021 - http://www.sdmx.org -->
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/query" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/query" xmlns:query="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/query" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 	<xs:include schemaLocation="SDMXQueryBase.xsd"/>
-	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v2_1/common" schemaLocation="SDMXCommon.xsd"/>
+	<xs:import namespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" schemaLocation="SDMXCommon.xsd"/>
 	
 	<xs:annotation>
 		<xs:appinfo>SDMX Metadata Query Module</xs:appinfo>
