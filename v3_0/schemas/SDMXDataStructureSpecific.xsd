@@ -2,7 +2,6 @@
 <!-- Copyright SDMX 2021 - http://www.sdmx.org -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/structurespecific" xmlns:common="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" elementFormDefault="qualified" targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/data/structurespecific">
 	<xs:include schemaLocation="SDMXDataStructureSpecificBase.xsd"/>
-	<xs:include schemaLocation="SDMXDataStructureSpecificTimeSeries.xsd"/>
 
 	<xs:annotation>
 		<xs:appinfo>SDMX Core Structure Specific Data Namespace Module</xs:appinfo>

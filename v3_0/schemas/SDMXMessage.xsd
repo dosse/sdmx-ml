@@ -73,28 +73,7 @@
          </xs:restriction>
       </xs:complexContent>
    </xs:complexType>
-   
-   <xs:element name="StructureSpecificTimeSeriesData" type="StructureSpecificTimeSeriesDataType">
-      <xs:annotation>
-         <xs:documentation>StructureSpecificTimeSeriesData is a special derivation of the structure specific data message which only allows for time series oriented date (i.e. the observation dimension must be time). Although this is a different message, the content of this message will be exactly the same as a structure specific data message that specifies time as the observation dimension; therefore no additional processing requirements are necessary. This message is intended to only be used when it is necessary to restrict an exchange to being only time series based data.</xs:documentation>
-      </xs:annotation>
-   </xs:element>
-   
-   <xs:complexType name="StructureSpecificTimeSeriesDataType">
-      <xs:annotation>
-         <xs:documentation>StructureSpecificTimeSeriesDataType defines the structure of the structure specific time series data message.</xs:documentation>
-      </xs:annotation>
-      <xs:complexContent>
-         <xs:restriction base="StructureSpecificDataType">
-            <xs:sequence>
-               <xs:element name="Header" type="StructureSpecificTimeSeriesDataHeaderType"/>
-               <xs:element name="DataSet" type="dsd:TimeSeriesDataSetType" minOccurs="0" maxOccurs="unbounded"/>
-               <xs:element ref="footer:Footer" minOccurs="0"/>
-            </xs:sequence>
-         </xs:restriction>
-      </xs:complexContent>
-   </xs:complexType>
-	
+
 	<!-- Reference Metadata Messages -->
 	
 	<xs:element name="GenericMetadata" type="GenericMetadataType">
@@ -615,7 +594,7 @@
 					<xs:element name="ReportingBegin" type="common:ObservationalTimePeriodType" minOccurs="0"/>
 					<xs:element name="ReportingEnd" type="common:ObservationalTimePeriodType" minOccurs="0"/>
 					<xs:element name="EmbargoDate" type="xs:dateTime" minOccurs="0"/>
-					<xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>					
+					<xs:element name="Source" type="common:TextType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
