@@ -3122,7 +3122,36 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
-	
+
+	<xs:complexType name="MetadataProvisionAgreementReferenceType">
+		<xs:annotation>
+			<xs:documentation>MetadataProvisionAgreementReferenceType is a type for referencing a metadata provision agreement. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="MaintainableReferenceBaseType">
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="Ref" type="MetadataProvisionAgreementRefType" form="unqualified"/>
+						<xs:element name="URN" type="xs:anyURI" form="unqualified" minOccurs="0"/>
+					</xs:sequence>
+					<xs:element name="URN" type="xs:anyURI" form="unqualified"/>
+				</xs:choice>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>		
+
+	<xs:complexType name="MetadataProvisionAgreementRefType">
+		<xs:annotation>
+			<xs:documentation>MetadataProvisionAgreementRefType contains a set of reference fields for a metadata provision agreement.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="MaintainableRefBaseType">
+				<xs:attribute name="class" type="MaintainableTypeCodelistType" use="optional" fixed="MetadataProvisionAgreement"/>
+				<xs:attribute name="package" type="PackageTypeCodelistType" use="optional" fixed="registry"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
 	<xs:complexType name="ProvisionAgreementReferenceType">
 		<xs:annotation>
 			<xs:documentation>ProvisionAgreementReferenceType is a type for referencing a provision agreement. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
@@ -4155,6 +4184,7 @@
 			<xs:enumeration value="MeasureDimension"/>
 			<xs:enumeration value="Metadataflow"/>
 			<xs:enumeration value="MetadataAttribute"/>
+			<xs:enumeration value="MetadataProvisionAgreement"/>
 			<xs:enumeration value="MetadataSet"/>
 			<xs:enumeration value="MetadataStructure"/>
 			<xs:enumeration value="MetadataTarget"/>
@@ -4214,6 +4244,7 @@
 			<xs:enumeration value="DefinitionScheme"/>
 			<xs:enumeration value="HierarchicalCodelist"/>
 			<xs:enumeration value="Metadataflow"/>
+			<xs:enumeration value="MetadataProvisionAgreement"/>
 			<xs:enumeration value="MetadataStructure"/>
 			<xs:enumeration value="NamePersonalisationScheme"/>
 			<xs:enumeration value="OrganisationScheme"/>
@@ -4248,6 +4279,7 @@
 			<xs:enumeration value="DataStructure"/>
 			<xs:enumeration value="HierarchicalCodelist"/>
 			<xs:enumeration value="Metadataflow"/>
+			<xs:enumeration value="MetadataProvisionAgreement"/>
 			<xs:enumeration value="MetadataStructure"/>
 			<xs:enumeration value="NamePersonalisationScheme"/>
 			<xs:enumeration value="OrganisationUnitScheme"/>
@@ -4771,6 +4803,12 @@
 		</xs:annotation>
 	</xs:element>
 
+	<xs:element name="MetadataProvisionAgreement" type="EmptyType">
+		<xs:annotation>
+			<xs:documentation>MetadataProvisionAgreement is an empty element that denotes a metadata provision agreement object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
 	<xs:element name="MetadataSet" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>MetadataSet is an empty element that denotes a metadata set object.</xs:documentation>
@@ -5006,6 +5044,7 @@
 			<xs:element ref="MeasureDimension" minOccurs="0"/>
 			<xs:element ref="Metadataflow" minOccurs="0"/>
 			<xs:element ref="MetadataAttribute" minOccurs="0"/>
+			<xs:element ref="MetadataProvisionAgreement" minOccurs="0"/>
 			<xs:element ref="MetadataSet" minOccurs="0"/>
 			<xs:element ref="MetadataStructure" minOccurs="0"/>
 			<xs:element ref="MetadataTarget" minOccurs="0"/>
@@ -5060,6 +5099,7 @@
 					<xs:element ref="DataStructure" minOccurs="0"/>
 					<xs:element ref="HierarchicalCodelist" minOccurs="0"/>
 					<xs:element ref="Metadataflow" minOccurs="0"/>
+					<xs:element ref="MetadataProvisionAgreement" minOccurs="0"/>
 					<xs:element ref="MetadataStructure" minOccurs="0"/>
 					<xs:element ref="NamePersonalisationScheme" minOccurs="0"/>
 					<xs:element ref="OrganisationUnitScheme" minOccurs="0"/>
