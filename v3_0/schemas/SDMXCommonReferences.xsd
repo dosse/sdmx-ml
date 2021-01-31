@@ -19,6 +19,13 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:simpleType name="WildcardNestedIDType">
+		<xs:annotation>
+			<xs:documentation>WildcardNestedIDTypeType combines the NestedIDType and WildcardType to allow a reference to either a specific nested identifier, or to wildcard the identifier in the reference by specifying the '*' value.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="NestedIDType WildcardType"/>
+	</xs:simpleType>
+
 	<xs:simpleType name="TwoLevelIDType">
 		<xs:annotation>
 			<xs:documentation>TwoLevelIDType defines an identifier with exactly two levels.</xs:documentation>
@@ -35,6 +42,13 @@
 		<xs:restriction base="NestedIDType">
 			<xs:pattern value="[A-Za-z0-9_@$\-]+"/>
 		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="WildcardIDType">
+		<xs:annotation>
+			<xs:documentation>WildcardIDTypeType combines the IDType and WildcardType to allow a reference to either a specific identifier, or to wildcard the identifier in the reference by specifying the '*' value.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="IDType WildcardType"/>
 	</xs:simpleType>
 
 	<xs:simpleType name="NCNameIDType">
@@ -73,6 +87,13 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:simpleType name="WildcardVersionType">
+		<xs:annotation>
+			<xs:documentation>WildcardVersionType combines the VersionType and WildcardType to allow a reference to either a specific version of an object, or to wildcard the version in the reference by specifying the '*' value.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="VersionType WildcardType"/>
+	</xs:simpleType>
+
 	<xs:simpleType name="VersionQueryType">
 		<xs:annotation>
 			<xs:documentation>VersionQueryType combines the VersionType and LateBoundVersionType to allow one to query for either a specific version of an object, or the latest version by specifying the '*' value.</xs:documentation>
@@ -93,6 +114,19 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:simpleType name="WildcardType">
+		<xs:annotation>
+			<xs:documentation>WildcardType is a single value code list, used to include the '*' character - indicating that the identification component is wildcarded.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="*">
+				<xs:annotation>
+					<xs:documentation>Indicates that any value of the identifier component is allowed.</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
 	<xs:complexType name="EmptyType">
 		<xs:annotation>
 			<xs:documentation>EmptyType is an empty complex type for elements where the presence of the tag indicates all that is necessary.</xs:documentation>
@@ -107,7 +141,7 @@
 		</xs:annotation>
 		<xs:choice>
 			<xs:sequence>
-				<xs:element name="Ref" type="RefBaseType" form="unqualified">
+				<xs:element name="Ref" type="WildcardRefBaseType" form="unqualified">
 					<xs:annotation>
 						<xs:documentation>Ref is used to provide a complete set of reference fields. Derived reference types will restrict the RefType so that the content of the Ref element requires exactly what is needed for a complete reference.</xs:documentation>
 					</xs:annotation>
@@ -126,36 +160,36 @@
 		</xs:choice>
 	</xs:complexType>	
 
-	<xs:complexType name="RefBaseType" abstract="true">
+	<xs:complexType name="WildcardRefBaseType" abstract="true">
 		<xs:annotation>
-			<xs:documentation>RefBaseType is an abstract base type the defines the basis for any set of complete reference fields. This should be refined by derived types so that only the necessary fields are available and required as necessary. This can be used for both full and local references (when some of the values are implied from another context). A local reference is indicated with the local attribute. The values in this type correspond directly to the components of the URN structure, and thus can be used to compose a URN when the local attribute value is false. As this is the case, any reference components which are not part of the URN structure should not be present in the derived types.</xs:documentation>
+			<xs:documentation>WildcardRefBaseType is an abstract base type the defines the basis for any set of complete reference fields, while allowing for the wildcarding of components. This should be refined by derived types so that only the necessary fields are available and required as necessary. This can be used for both full and local references (when some of the values are implied from another context). A local reference is indicated with the local attribute. The values in this type correspond directly to the components of the URN structure, and thus can be used to compose a URN when the local attribute value is false. As this is the case, any reference components which are not part of the URN structure should not be present in the derived types.</xs:documentation>
 		</xs:annotation>
-		<xs:attribute name="agencyID" type="NestedNCNameIDType" use="optional">
+		<xs:attribute name="agencyID" type="WildcardNestedIDType" use="optional">
 			<xs:annotation>
 				<xs:documentation>The agencyID attribute identifies the maintenance agency for the object being referenced (agency-id in the URN structure). This is optional to allow for local references (where the other reference fields are inferred from another context), but all complete references will require this.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="maintainableParentID" type="IDType" use="optional">
+		<xs:attribute name="maintainableParentID" type="WildcardIDType" use="optional">
 			<xs:annotation>
 				<xs:documentation>The maintainableParentID attribute identifies the maintainable object in which the referenced object is defined, if applicable (maintainable-parent-object-id in the URN structure). This is only used in references where the referenced object is not itself maintainable.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional">
+		<xs:attribute name="maintainableParentVersion" type="WildcardVersionType" use="optional">
 			<xs:annotation>
 				<xs:documentation>The maintainableParentVersion attribute identifies the version of the maintainable object in which the referenced object is defined (maintainable-parent-object-version in the URN structure). This is only used in references where the referenced object is not itself maintainable. This should only be used when the maintainableParentID is present. If this is available, a default of 1.0 will always apply.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="containerID" type="NestedIDType" use="optional">
+		<xs:attribute name="containerID" type="WildcardNestedIDType" use="optional">
 			<xs:annotation>
 				<xs:documentation>The containerID attribute identifies the object within a maintainable object in which the referenced object is defined (container-object-id in the URN structure). This is only used in references where the referenced object is not contained directly within a maintainable object (e.g. a Component within a ComponentList, within a maintainable Structure). If the container has a fixed identifier, this attribute will not be present.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="id" type="NestedIDType" use="required">
+		<xs:attribute name="id" type="WildcardNestedIDType" use="required">
 			<xs:annotation>
 				<xs:documentation>The id attribute identifies the object being referenced, and is therefore always required.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="version" type="VersionType" use="optional">
+		<xs:attribute name="version" type="WildcardVersionType" use="optional">
 			<xs:annotation>
 				<xs:documentation>The version attribute identifies the version of the object being reference, if applicable. If this is available, a default value of 1.0 will always apply.</xs:documentation>
 			</xs:annotation>
@@ -176,6 +210,61 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
+
+	<xs:complexType name="RefBaseType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>RefBaseType is an abstract base type the defines the basis for any set of complete reference fields. This should be refined by derived types so that only the necessary fields are available and required as necessary. This can be used for both full and local references (when some of the values are implied from another context). A local reference is indicated with the local attribute. The values in this type correspond directly to the components of the URN structure, and thus can be used to compose a URN when the local attribute value is false. As this is the case, any reference components which are not part of the URN structure should not be present in the derived types.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="WildcardRefBaseType">
+				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The agencyID attribute identifies the maintenance agency for the object being referenced (agency-id in the URN structure). This is optional to allow for local references (where the other reference fields are inferred from another context), but all complete references will require this.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="maintainableParentID" type="IDType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The maintainableParentID attribute identifies the maintainable object in which the referenced object is defined, if applicable (maintainable-parent-object-id in the URN structure). This is only used in references where the referenced object is not itself maintainable.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The maintainableParentVersion attribute identifies the version of the maintainable object in which the referenced object is defined (maintainable-parent-object-version in the URN structure). This is only used in references where the referenced object is not itself maintainable. This should only be used when the maintainableParentID is present. If this is available, a default of 1.0 will always apply.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="containerID" type="NestedIDType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The containerID attribute identifies the object within a maintainable object in which the referenced object is defined (container-object-id in the URN structure). This is only used in references where the referenced object is not contained directly within a maintainable object (e.g. a Component within a ComponentList, within a maintainable Structure). If the container has a fixed identifier, this attribute will not be present.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="id" type="NestedIDType" use="required">
+					<xs:annotation>
+						<xs:documentation>The id attribute identifies the object being referenced, and is therefore always required.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="version" type="VersionType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The version attribute identifies the version of the object being reference, if applicable. If this is available, a default value of 1.0 will always apply.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="local" type="xs:boolean" use="optional">
+					<xs:annotation>
+						<xs:documentation>The local attribute indicates whether this set of reference fields is meant for local referencing, in which case some of the reference fields will be implied from another context. Concrete instances of this class will always fix this value to either true or false, depending on their intended usage. If the value is fixed to true, then the complete set of reference fields will be required and a URN can be fully composed from the values.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="class" type="ObjectTypeCodelistType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The class attribute indicates the class name of the object being referenced. This attribute allows any reference to be processed generically from this definition. References derived from this should fix the value of this attribute to indicate the type of object that is being referenced, or in the case that a reference which allows specific types of fields, the representation should be sub-setted to the appropriate values.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+				<xs:attribute name="package" type="PackageTypeCodelistType" use="optional">
+					<xs:annotation>
+						<xs:documentation>The package attribute indicates the package name for the object being referenced. This attribute allows any reference to be processed generically from this definition. References derived from this should fix the value of this attribute to indicate the type of object that is being referenced, or in the case that a reference which allows specific types of fields, the representation should be sub-setted to the appropriate values.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
 	
 	<xs:complexType name="ObjectReferenceType">
 		<xs:annotation>
@@ -193,7 +282,7 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
-	
+
 	<xs:complexType name="ObjectRefType">
 		<xs:annotation>
 			<xs:documentation>ObjectRefType contains a set of reference fields for the purpose of referencing any object. This cannot be a local reference, therefore the agency identifier is required. It is also required that the class and package be supplied for the referenced object such that a complete URN reference can be built from the values provided. Note that this is not capable of fully validating that all necessary fields are supplied for a given object type.</xs:documentation>
@@ -207,7 +296,38 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
-	
+
+	<xs:complexType name="WildcardObjectReferenceType">
+		<xs:annotation>
+			<xs:documentation>WildcardObjectReferenceType is a generic reference which allows for any object to be referenced with the ability to wildcard certain parts of the identifier. The type of object actually referenced can be determined from the URN or from the class attribute of the full set of reference fields.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ReferenceType">
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="Ref" type="WildcardObjectRefType" form="unqualified"/>
+						<xs:element name="URN" type="xs:anyURI" form="unqualified" minOccurs="0"/>
+					</xs:sequence>
+					<xs:element name="URN" type="xs:anyURI" form="unqualified"/>
+				</xs:choice>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="WildcardObjectRefType">
+		<xs:annotation>
+			<xs:documentation>WildcardObjectRefType contains a set of reference fields for the purpose of referencing any object, while allowing wildcarding of certain components of the identifier. This cannot be a local reference, therefore the agency identifier is required. It is also required that the class and package be supplied for the referenced object such that a complete URN reference can be built from the values provided. Note that this is not capable of fully validating that all necessary fields are supplied for a given object type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="WildcardRefBaseType">
+				<xs:attribute name="agencyID" type="WildcardNestedIDType" use="required"/>
+				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
+				<xs:attribute name="class" type="ObjectTypeCodelistType" use="required"/>
+				<xs:attribute name="package" type="PackageTypeCodelistType" use="required"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
 	<xs:complexType name="MaintainableRefBaseType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>MaintainableRefBaseType is an abstract base type for referencing a maintainable object.</xs:documentation>
