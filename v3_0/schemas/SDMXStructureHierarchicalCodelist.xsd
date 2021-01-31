@@ -14,7 +14,7 @@
 			<xs:documentation>HierarchicalCodelistBaseType is an abstract base class that is the basis for the HierarchicalCodelistType. It requires that a name be supplied.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="MaintainableType">
+			<xs:restriction base="common:MaintainableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
@@ -59,7 +59,7 @@
 			<xs:documentation>HierarchyBaseType is an abstract base type that serves as the basis for the HierarchyType. It requires a name and id be provided.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="NameableType">
+			<xs:restriction base="common:NameableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
@@ -106,7 +106,7 @@
 			<xs:documentation>HierarchicalCodeBaseType is an abstract base type the creates the basis for the HierarchicalCodeType. It removes the urn and uri.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="IdentifiableType">
+			<xs:restriction base="common:IdentifiableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 				</xs:sequence>
@@ -184,7 +184,7 @@
 			<xs:documentation>LevelBaseType is an abstract base type that makes up the basis for the LevelType. It requires a name and id.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="NameableType">
+			<xs:restriction base="common:NameableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>

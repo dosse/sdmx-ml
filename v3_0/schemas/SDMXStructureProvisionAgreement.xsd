@@ -14,7 +14,7 @@
 			<xs:documentation>ProvisionAgreementType describes the structure of a provision agreement. A provision agreement defines an agreement for a data provider to report data against a dataflow. Attributes which describe how the registry must behave when data or metadata is registered against this provision agreement are supplied.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="MaintainableType">
+			<xs:extension base="common:MaintainableType">
 				<xs:sequence>
 					<xs:element name="Dataflow" type="common:DataflowReferenceType">
 						<xs:annotation>
@@ -36,7 +36,7 @@
 			<xs:documentation>ProvisionAgreementType describes the structure of a provision agreement. A provision agreement defines an agreement for a data provider to report data or reference metadata against a flow. Attributes which describe how the registry must behave when data or metadata is registered against this provision agreement are supplied.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="MaintainableType">
+			<xs:extension base="common:MaintainableType">
 				<xs:sequence>
 					<xs:element name="Metadataflow" type="common:MetadataflowReferenceType">
 						<xs:annotation>
