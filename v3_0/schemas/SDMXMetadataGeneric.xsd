@@ -67,6 +67,11 @@
 			<xs:extension base="common:AnnotableType">
 				<xs:sequence>
 					<xs:choice minOccurs="0">
+						<xs:element name="Value" type="xs:anySimpleType" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Value holds any simple value (enumerated or not) for the metadata attribute. It can be repeated if this metadata attribute allows for multiple values.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
 						<xs:element ref="common:Text" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:documentation>Text is used to supply parallel multi-lingual textual values for the reported metadata attribute. This will be used if the text format of the metadata attribute has a type of string and the multi-lingual value is set to true.</xs:documentation>
@@ -87,11 +92,6 @@
 				<xs:attribute name="id" type="common:IDType" use="required">
 					<xs:annotation>
 						<xs:documentation>The id attribute identifies the metadata attribute that the value is being reported for.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
-				<xs:attribute name="value" type="xs:anySimpleType" use="optional">
-					<xs:annotation>
-						<xs:documentation>The value attribute holds any simple value (enumerated or not) for the metadata attribute.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
