@@ -252,6 +252,7 @@
 		</xs:complexContent>
 	</xs:complexType>
 
+		<!-- TODO is the structureRef still necessary after data/metadata message changes? -->
 	<xs:attributeGroup name="SetAttributeGroup">
 		<xs:annotation>
 			<xs:documentation>The SetAttributeGroup defines a common set of attributes for use in data and reference metadata sets.</xs:documentation>
@@ -259,11 +260,6 @@
 		<xs:attribute name="structureRef" type="xs:IDREF" use="required">
 			<xs:annotation>
 				<xs:documentation>The structureRef contains a reference to a structural specification in the header of a data or reference metadata message. The structural specification details which structure the data or reference metadata conforms to, as well as providing additional information such as how the data is structure (e.g. which dimension occurs at the observation level for a data set).</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="setID" type="IDType" use="optional">
-			<xs:annotation>
-				<xs:documentation>The setID provides an identification of the data or metadata set.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="action" type="ActionType" use="optional">
@@ -279,16 +275,6 @@
 		<xs:attribute name="reportingEndDate" type="BasicTimePeriodType" use="optional">
 			<xs:annotation>
 				<xs:documentation>The reportingEndDate indicates the inclusive end time of the data reported in the data or metadata set.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="validFromDate" type="xs:dateTime" use="optional">
-			<xs:annotation>
-				<xs:documentation>The validFromDate indicates the inclusive start time indicating the validity of the information in the data or metadata set.</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
-		<xs:attribute name="validToDate" type="xs:dateTime" use="optional">
-			<xs:annotation>
-				<xs:documentation>The validToDate indicates the inclusive end time indicating the validity of the information in the data or metadata set.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="publicationYear" type="xs:gYear" use="optional">
