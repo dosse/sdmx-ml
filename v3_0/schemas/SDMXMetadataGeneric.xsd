@@ -48,7 +48,7 @@
 							<xs:documentation>Target references the target structures for which metadata is being reported. These must conform with the constraints defined by the metadata provision agreement and/or the metadataflow.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="Att" type="AttributeType" maxOccurs="unbounded">
+					<xs:element ref="Att" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>Att elements hold the reported metadata attribute values being reported in the metadata set. These conform to the metadata structure defintion</xs:documentation>
 						</xs:annotation>
@@ -58,6 +58,16 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
+
+	<xs:element name="Att" type="AttributeType">
+		<xs:annotation>
+			<xs:documentation>Att elements hold the reported values for a given metadata attribute. These values conform to the definition of the meatadata attribute in the metadata structure defintion.</xs:documentation>
+		</xs:annotation>
+		<xs:unique name="Att_Unique_Value_Language">
+			<xs:selector xpath="common:Text | common:StructuredText"/>
+			<xs:field xpath="@xml:lang"/>
+		</xs:unique>
+	</xs:element>
 
 	<xs:complexType name="AttributeType">
 		<xs:annotation>
@@ -83,9 +93,9 @@
 							</xs:annotation>
 						</xs:element>
 					</xs:choice>
-					<xs:element name="Att" type="AttributeType" minOccurs="0" maxOccurs="unbounded">
+					<xs:element ref="Att" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
-							<xs:documentation>AttributeSet contains the reported metadata attribute values for the child metadata attributes.</xs:documentation>
+							<xs:documentation>Att contains the reported metadata attribute values for the child metadata attributes.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
