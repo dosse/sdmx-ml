@@ -4,12 +4,56 @@
 	<xs:include schemaLocation="SDMXCommonReferences.xsd"/>
 	<!-- Note: The following import statement sometimes causes problems with IE 6.* If you have this problem, comment it out. -->
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="xml.xsd"/>
-	
+
 	<xs:annotation>
 		<xs:appinfo>SDMX Common Namespace Module</xs:appinfo>
 		<xs:documentation>The common namespace module contains common constructs that are used by constructs in other namespaces.</xs:documentation>
 	</xs:annotation>
-	
+
+	<xs:complexType name="ValueType" abstract="true" mixed="true">
+		<xs:annotation>
+			<xs:documentation>ValueType is an abstract class that is the basis for any component value that cannot be simply represented as a space-normalized value (e.g. in an XML attribute). Although its content is mixed, it should be restricted so that only character data or the Text or Structured text is used. See SimpleValueType,TextValueType, and StructuredTextValueType for details.</xs:documentation>
+		</xs:annotation>
+		<xs:choice minOccurs="0">
+			<xs:element ref="Text" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="StructuredText" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:complexType name="SimpleValueType" mixed="true">
+		<xs:annotation>
+			<xs:documentation>SimpleValueType is a restriction of ValueType that only allows character data (e.g. for values that are not language dependent).</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ValueType"/>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="TextValueType">
+		<xs:annotation>
+			<xs:documentation>TextValueType is a restriction of ValueType that allows mutliple Text elements to expressed a text value in multiple languages. The content of this should be restricted in its use to only allow a langue code (xml:lang) to be used once within an element of this type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ValueType">
+				<xs:sequence>
+					<xs:element ref="Text" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="StructureTextValueType">
+		<xs:annotation>
+			<xs:documentation>StructureTextValueType is a restriction of ValueType that allows mutliple StructuredText (XHTML mixed content) elements to expressed a text value in multiple languages. The content of this should be restricted in its use to only allow a langue code (xml:lang) to be used once within an element of this type.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="ValueType">
+				<xs:sequence>
+					<xs:element ref="StructuredText" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
 	<xs:complexType name="TextType">
 		<xs:annotation>
 			<xs:documentation>TextType provides for a set of language-specific alternates to be provided for any human-readable constructs in the instance.</xs:documentation>
@@ -727,7 +771,7 @@
 			<xs:documentation>ComponentValueSetType is an abstract base type which is used to provide a set of value for a referenced component. Implementations of this type will be based on a particular component type and refine the allowed values to reflect the types of values that are possible for that type of component.</xs:documentation>
 		</xs:annotation>
 		<xs:choice minOccurs="0">
-			<xs:element name="Value" type="SimpleValueType" maxOccurs="unbounded">
+			<xs:element name="Value" type="SimpleComponentValueType" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>Value provides a simple value for the component, such as a coded, numeric, or simple text value. This type of component value is applicable for dimensions and attributes.</xs:documentation>
 				</xs:annotation>
@@ -914,7 +958,7 @@
 		<xs:complexContent>
 			<xs:restriction base="ComponentValueSetType">
 				<xs:choice>
-					<xs:element name="Value" type="SimpleValueType" maxOccurs="unbounded"/>
+					<xs:element name="Value" type="SimpleComponentValueType" maxOccurs="unbounded"/>
 					<xs:element name="TimeRange" type="TimeRangeValueType"/>
 				</xs:choice>
 				<xs:attribute name="id" type="SingleNCNameIDType" use="required"/>
@@ -947,7 +991,7 @@
 		<xs:complexContent>
 			<xs:restriction base="ComponentValueSetType">
 				<xs:choice minOccurs="0">
-					<xs:element name="Value" type="SimpleValueType" maxOccurs="unbounded"/>
+					<xs:element name="Value" type="SimpleComponentValueType" maxOccurs="unbounded"/>
 					<xs:element name="TimeRange" type="TimeRangeValueType"/>
 				</xs:choice>
 				<xs:attribute name="id" type="SingleNCNameIDType" use="required"/>
@@ -962,14 +1006,14 @@
 		<xs:complexContent>
 			<xs:restriction base="ComponentValueSetType">
 				<xs:choice minOccurs="0">
-					<xs:element name="Value" type="SimpleValueType" maxOccurs="unbounded"/>
+					<xs:element name="Value" type="SimpleComponentValueType" maxOccurs="unbounded"/>
 					<xs:element name="TimeRange" type="TimeRangeValueType"/>
 				</xs:choice>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="SimpleValueType">
+	<xs:complexType name="SimpleComponentValueType">
 		<xs:annotation>
 			<xs:documentation>SimpleValueType contains a simple value for a component, and if that value is from a code list, the ability to indicate that child codes in a simple hierarchy are part of the value set of the component for the region.</xs:documentation>
 		</xs:annotation>
@@ -989,7 +1033,7 @@
 			<xs:documentation>SimpleKeyValueType derives from the SimpleValueType, but does not allow for the cascading of value in the hierarchy, as keys are meant to describe a distinct full or partial key.</xs:documentation>
 		</xs:annotation>
 		<xs:simpleContent>
-			<xs:restriction base="SimpleValueType">
+			<xs:restriction base="SimpleComponentValueType">
 				<xs:attribute name="cascadeValues" type="xs:boolean" use="prohibited"/>
 			</xs:restriction>
 		</xs:simpleContent>

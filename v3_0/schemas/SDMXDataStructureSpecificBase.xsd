@@ -26,6 +26,11 @@
 							<xs:documentation>DataProvider contains a reference to the provider for the data set.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
+					<xs:element name="Comp" type="CompType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Comp contains the details of data set level attributes that cannot be expressed as XML attributes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="Group" type="GroupType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>Group contains a references to a defined group in the data structure definition along with its key (if necessary) and values for the attributes which are associated with the group. An attribute is associated to a group by either an explicit group relationship or by a group attachment when the attribute has a relationship with a dimension which is a member of this group.</xs:documentation>
@@ -43,6 +48,11 @@
 							</xs:annotation>
 						</xs:element>
 					</xs:choice>
+					<xs:element name="Atts" type="AttsType" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Atts contains a set of data attribute values reported agains a partial set of dimension values.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 				</xs:sequence>
 				<xs:attributeGroup ref="SetAttributeGroup"/>
 				<xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="optional">
@@ -65,6 +75,13 @@
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="common:AnnotableType">
+				<xs:sequence>
+					<xs:element name="Comp" type="CompType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Comp contains the details of group level attributes that cannot be expressed as XML attributes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
 				<xs:attribute name="type" type="common:IDType" use="optional">
 					<xs:annotation>
 						<xs:documentation>The type attribute reference the identifier of the group as defined in the data structure definition. This is optional, but derived group types will provide a fixed value for this so that it always available in the post validation information set. This allows the group to be processed in a generic manner.</xs:documentation>
@@ -84,13 +101,18 @@
 		<xs:annotation>
 			<xs:documentation>
 				<p>SeriesType is the abstract type which defines a structure which is used to group a collection of observations which have a key in common. The key for a series is every dimension defined in the data structure definition, save the dimension declared to be at the observation level for this data set. In addition to observations, values can be provided for attributes which are associated with the dimensions which make up this series key (so long as the attributes do not specify a group attachment or also have an relationship with the observation dimension). It is possible for the series to contain only observations or only attribute values, or both.</p>
-			
-				<p>Data structure definition schemas will drive a type based on this that is specific to the data structure definition and the variation of the format being expressed in the schema. Both the dimension values which make up the key and the attribute values associated with the key dimensions will be represented with XML attributes. This is specified in the content model with the declaration of anyAttributes in the "local" namespace. The derived series type will refine this structure so that the attributes are explicit. The XML attributes will be given a name based on the attribute's identifier. These XML attributes will be unqualified (meaning they do not have a namespace associated with them). The dimension XML attributes will be required while the attribute XML attributes will be optional. To allow for generic processing, it is required that the only unqualified XML attributes in the derived group type be for the series dimensions and attributes declared in the data structure definition. If additional attributes are required, these should be qualified with a namespace so that a generic application can easily distinguish them as not being meant to represent a data structure definition dimension or attribute.</p>
+
+				<p>Data structure definition schemas will derive a type based on this that is specific to the data structure definition and the variation of the format being expressed in the schema. Both the dimension values which make up the key and the attribute values associated with the key dimensions will be represented with XML attributes. This is specified in the content model with the declaration of anyAttributes in the "local" namespace. The derived series type will refine this structure so that the attributes are explicit. The XML attributes will be given a name based on the attribute's identifier. These XML attributes will be unqualified (meaning they do not have a namespace associated with them). The dimension XML attributes will be required while the attribute XML attributes will be optional. To allow for generic processing, it is required that the only unqualified XML attributes in the derived group type be for the series dimensions and attributes declared in the data structure definition. If additional attributes are required, these should be qualified with a namespace so that a generic application can easily distinguish them as not being meant to represent a data structure definition dimension or attribute.</p>
 			</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="common:AnnotableType">
 				<xs:sequence>
+					<xs:element name="Comp" type="CompType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Comp contains the details of series level attributes that cannot be expressed as XML attributes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
 					<xs:element name="Obs" type="ObsType" form="unqualified" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="TIME_PERIOD" type="common:ObservationalTimePeriodType" use="optional">
@@ -107,7 +129,21 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	
+
+	<xs:complexType name="CompType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>CompType is the abstract base for any component value (e.g. an attribute or measure) that cannot be represented as an XML attribute. For example, a repeated value, a text value in multiple languages, or a value with structured text (XHTML) cannot be expressed as an XML attribute. This type is meant to be restricted based on the component to restrict the cardinality and type of its Value element to conform to the compoent definition. The type of the value element should be restricted to common:SimpleValueType, common:TextValueType, or common:StructuredValueType. In addition, the id attribute should be restricted to be a fixed value with the component identifier. This restricted type based on the component can then be used on Comp elements by using the xsi:type to state the component being expressed and refine the contents of the element to the values allowed by the component.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Value" type="common:ValueType" minOccurs="0" maxOccurs="unbounded" form="unqualified">
+				<xs:annotation>
+					<xs:documentation></xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="id" type="common:NCNameIDType" use="required"/>
+	</xs:complexType>
+
 	<xs:complexType name="ObsType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>
@@ -120,6 +156,13 @@
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="common:AnnotableType">
+				<xs:sequence>
+					<xs:element name="Comp" type="CompType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
+						<xs:annotation>
+							<xs:documentation>Comp contains the details of observation measures or attributes that cannot be expressed as XML attributes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
 				<xs:attribute name="type" type="common:IDType" use="optional">
 					<xs:annotation>
 						<xs:documentation>The type attribute is used when the derived format requires that explicit measure be used. In this case, the derived type based on the measure will fix this value to be the identification of the measure concept. This will not be required, but since it is fixed it will be available in the post validation information set which will allow for generic processing of the data. If explicit measures are not used, then the derived type will prohibit the use of this attribute.</xs:documentation>
@@ -143,6 +186,25 @@
 				<xs:anyAttribute namespace="##local"/>
 			</xs:extension>
 		</xs:complexContent>
+	</xs:complexType>
+
+	<!-- TODO should repeated simple values (e.g. number or dates use XML attributes with list values?)-->
+	<!-- TODO what are the rules for generating derivations of AttsType (should it be left as any dimension and any attributes?) -->
+	<xs:complexType name="AttsType" abstract="true">
+		<xs:annotation>
+			<xs:documentation>
+				<p>AttsType is the abstract type which defines a structure which is used to group a collection of data attributes which have a key in common. The key for a attribute collection is a subset of the dimension defined in the data structure definition.</p>
+			
+				<p>Data structure definition schemas will derive a type based on this that is specific to the data structure definition. The dimension values which make up the key  will be represented with local (non-namespace qualified) XML attributes. The metadata attribute values associated with the key dimensions will be expressed as XML local (non-namespace qualified) attributes if they are simple values (e.g. enumerated, dates, numbers) and are not repeatable. Metadata attributes that are repeatable, or do not have simple values (e.g. text) will be expressed using the Comp element. This dimensions and simple attributes are specified in the content model with the declaration of anyAttributes in the "local" namespace. The derived series type will refine this structure so that the attributes are explicit. The XML attributes will be given a name based on the attribute's identifier. These XML attributes will be unqualified (meaning they do not have a namespace associated with them). The dimension XML attributes will be required while the attribute XML attributes will be optional. To allow for generic processing, it is required that the only unqualified XML attributes in the derived group type be for the series dimensions and attributes declared in the data structure definition. If additional attributes are required, these should be qualified with a namespace so that a generic application can easily distinguish them as not being meant to represent a data structure definition dimension or attribute.</p>
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Comp" type="CompType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Comp contains the details of the metadata attributes that cannot be expressed as XML attributes.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
 	</xs:complexType>
 
 	<xs:simpleType name="DataScopeType">
