@@ -98,7 +98,6 @@
 				</xs:sequence>
 				<xs:attribute name="id" type="common:IDType" use="required" fixed="AGENCIES"/>
 				<xs:attribute name="version" type="common:VersionType" use="optional" fixed="1.0"/>
-				<xs:attribute name="isFinal" type="xs:boolean" use="optional" fixed="false"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -119,7 +118,6 @@
 				</xs:sequence>
 				<xs:attribute name="id" type="common:IDType" use="required" fixed="DATA_CONSUMERS"/>
 				<xs:attribute name="version" type="common:VersionType" use="optional" fixed="1.0"/>
-				<xs:attribute name="isFinal" type="xs:boolean" use="optional" fixed="false"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -140,7 +138,6 @@
 				</xs:sequence>
 				<xs:attribute name="id" type="common:IDType" use="required" fixed="DATA_PROVIDERS"/>
 				<xs:attribute name="version" type="common:VersionType" use="optional" fixed="1.0"/>
-				<xs:attribute name="isFinal" type="xs:boolean" use="optional" fixed="false"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>

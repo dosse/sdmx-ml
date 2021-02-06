@@ -29,6 +29,47 @@
 		</xs:complexContent>
 	</xs:complexType>
 
+	<xs:complexType name="StringValueType">
+		<xs:annotation>
+			<xs:documentation>StringValueType is a refinement of SimpleValueType limiting the content to be a string. This can be further refined with facets, patterns, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="SimpleValueType">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="IntValueType">
+		<xs:annotation>
+			<xs:documentation>IntValueType is a refinement of SimpleValueType limiting the content to be an integer. This can be further refined ranges, etc.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="SimpleValueType">
+				<xs:simpleType>
+					<xs:restriction base="xs:int"/>
+				</xs:simpleType>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<xs:complexType name="ObservationalTimeValueType">
+		<xs:annotation>
+			<xs:documentation>ObservationTimeValueType is a refinement of SimpleValueType limiting the content to be an observational time period.</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:restriction base="SimpleValueType">
+				<xs:simpleType>
+					<xs:restriction base="ObservationalTimePeriodType"/>
+				</xs:simpleType>
+			</xs:restriction>
+		</xs:simpleContent>
+	</xs:complexType>
+
+	<!-- TODO Decide whether to declare the rest -->
+
 	<xs:complexType name="TextValueType">
 		<xs:annotation>
 			<xs:documentation>TextValueType is a restriction of ValueType that allows mutliple Text elements to expressed a text value in multiple languages. The content of this should be restricted in its use to only allow a langue code (xml:lang) to be used once within an element of this type.</xs:documentation>
@@ -281,11 +322,6 @@
 						<xs:documentation>The agencyID must be provided, and identifies the maintenance agency of the object.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="isFinal" type="xs:boolean" use="optional" default="false">
-					<xs:annotation>
-						<xs:documentation>The isFinal attribute indicates whether the object is unchangeable without versioning. If the value is true, the object must be versioned upon change. If the final attribute is not supplied, then the object is assumed not to be final. Note that all production objects must be final.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 				<xs:attribute name="isExternalReference" type="xs:boolean" use="optional" default="false">
 					<xs:annotation>
 						<xs:documentation>The isExternalReference attribute, if true, indicates that the actual object is not defined the corresponding element, rather its full details are defined elsewhere - indicated by either the registryURL, the repositoryURL, or the structureURL. The purpose of this is so that each structure message does not have to redefine object that are already defined elsewhere. If the isExternalReference attribute is not set, then it is assumed to be false, and the object should contain the full definition of its contents. If more than one of the registryURL, the repositoryURL, and the structureURL are supplied, then the application processing the object can choose the method it finds best suited to retrieve the details of the object.</xs:documentation>
@@ -296,7 +332,7 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-		<!-- TODO is the structureRef still necessary after data/metadata message changes? -->
+	<!-- TODO is the structureRef still necessary after data/metadata message changes? -->
 	<xs:attributeGroup name="SetAttributeGroup">
 		<xs:annotation>
 			<xs:documentation>The SetAttributeGroup defines a common set of attributes for use in data and reference metadata sets.</xs:documentation>

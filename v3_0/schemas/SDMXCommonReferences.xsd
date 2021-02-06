@@ -78,12 +78,45 @@
 		</xs:restriction>
 	</xs:simpleType>	
 	
+	<!-- TODO Need refernces for describing semantic versioning formats -->
 	<xs:simpleType name="VersionType">
 		<xs:annotation>
-			<xs:documentation>VersionType is used to communicate version information. The format is restricted to allow for simple incrementing and sorting of version number. The version consists of an unlimited set of numeric components, separated by the '.' character. When processing version, each numeric component (the number preceding and following any '.' character) should be parsed as an integer. Thus, a version of 1.3 and 1.03 would be equivalent, as both the '3' component and the '03' component would parse to an integer value of 3.</xs:documentation>
+			<xs:documentation>VersionType is used to communicate version information. Semantic versioning, based on 3 or 4 version parts (major.minor.patch[-extension]) is supported. See [INSERT_REFERENCE] for more detail on semantic versioning. The legency SDMX version format is also support.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="LegacyVersionNumberType SemanticVersionNumberType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="VersionReferenceType">
+		<xs:annotation>
+			<xs:documentation>VersionReferenceType defines the structure of version number in a reference. When semantic versioning is used, the major, minor, or patch version parts can be wildcarded using "+" as an extension. For example, "2+.3.1” means the currently latest available version >= “2.3.1” (even if not backwards compatible)". Support for legacy version numbers (e.g. 1 or 1.0) are also supported.</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="LegacyVersionNumberType SemanticVersionReferenceType"/>
+	</xs:simpleType>
+
+	<xs:simpleType name="SemanticVersionNumberType">
+		<xs:annotation>
+			<xs:documentation>SemanticVersionNumberType is a simple type for validating semantic version in the format (major.minor.patch[-extension]). See [INSERT_REFERNCE] for a complete description of the semantic versioning format.</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[0-9]+(\.[0-9]+)*"/>
+			<xs:pattern value="(0|[1-9]\d*)(\.(0|[1-9]\d*)){2}(\-(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*))(\.(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*)))*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="SemanticVersionReferenceType">
+		<xs:annotation>
+			<xs:documentation>SemanticVersionReferenceType is a simple type for referencing semantic version numbers. It allows for the wildcarding of the major, minor, or patch version parts using "+".</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0|[1-9]\d*\+?)(\.(0|[1-9]\d*\+?)){2}(\-(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*))(\.(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*)))*)?"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="LegacyVersionNumberType">
+		<xs:annotation>
+			<xs:documentation>LegacyVersionNumberType describes the version number format previously supported in SDMX. The format is restricted to allow for simple incrementing and sorting of version number. The version consists of an unlimited set of numeric components, separated by the '.' character. When processing version, each numeric component (the number preceding and following any '.' character) should be parsed as an integer. Thus, a version of 1.3 and 1.03 would be equivalent, as both the '3' component and the '03' component would parse to an integer value of 3.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="(0|[1-9]\d*)(\.(0|[1-9]\d*))?"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -91,27 +124,7 @@
 		<xs:annotation>
 			<xs:documentation>WildcardVersionType combines the VersionType and WildcardType to allow a reference to either a specific version of an object, or to wildcard the version in the reference by specifying the '*' value.</xs:documentation>
 		</xs:annotation>
-		<xs:union memberTypes="VersionType WildcardType"/>
-	</xs:simpleType>
-
-	<xs:simpleType name="VersionQueryType">
-		<xs:annotation>
-			<xs:documentation>VersionQueryType combines the VersionType and LateBoundVersionType to allow one to query for either a specific version of an object, or the latest version by specifying the '*' value.</xs:documentation>
-		</xs:annotation>
-		<xs:union memberTypes="VersionType LateBoundVersionType"/>
-	</xs:simpleType>
-
-	<xs:simpleType name="LateBoundVersionType">
-		<xs:annotation>
-			<xs:documentation>LateBoundVersionType is a single value code list, used to include the '*' character - indicating that the latest version of an object is required.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:string">
-			<xs:enumeration value="*">
-				<xs:annotation>
-					<xs:documentation>Indicates that the latest version of an object is requested.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
+		<xs:union memberTypes="VersionReferenceType WildcardType"/>
 	</xs:simpleType>
 
 	<xs:simpleType name="WildcardType">
@@ -124,6 +137,15 @@
 					<xs:documentation>Indicates that any value of the identifier component is allowed.</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="ExplicitVersionType">
+		<xs:annotation>
+			<xs:documentation>A restriction of WildcardVersionType the does not allow wildcarding. This allows proper retrictions to be placed on explicit references.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="WildcardVersionType">
+			<xs:pattern value="[^\*]*"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -227,7 +249,7 @@
 						<xs:documentation>The maintainableParentID attribute identifies the maintainable object in which the referenced object is defined, if applicable (maintainable-parent-object-id in the URN structure). This is only used in references where the referenced object is not itself maintainable.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute identifies the version of the maintainable object in which the referenced object is defined (maintainable-parent-object-version in the URN structure). This is only used in references where the referenced object is not itself maintainable. This should only be used when the maintainableParentID is present. If this is available, a default of 1.0 will always apply.</xs:documentation>
 					</xs:annotation>
@@ -242,7 +264,7 @@
 						<xs:documentation>The id attribute identifies the object being referenced, and is therefore always required.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="version" type="VersionType" use="optional">
+				<xs:attribute name="version" type="ExplicitVersionType" use="optional">
 					<xs:annotation>
 						<xs:documentation>The version attribute identifies the version of the object being reference, if applicable. If this is available, a default value of 1.0 will always apply.</xs:documentation>
 					</xs:annotation>
@@ -278,7 +300,7 @@
 						<xs:element name="URN" type="xs:anyURI" form="unqualified" minOccurs="0"/>
 					</xs:sequence>
 					<xs:element name="URN" type="xs:anyURI" form="unqualified"/>
-				</xs:choice>				
+				</xs:choice>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -336,10 +358,10 @@
 			<xs:restriction base="RefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="required"/>
 				<xs:attribute name="maintainableParentID" type="IDType" use="prohibited"/>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="prohibited"/>
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="prohibited"/>
 				<xs:attribute name="containerID" type="NestedIDType" use="prohibited"/>
 				<xs:attribute name="id" type="IDType" use="required"/>
-				<xs:attribute name="version" type="VersionType" use="optional" default="1.0"/>
+				<xs:attribute name="version" type="ExplicitVersionType" use="optional" default="1.0"/>
 				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
 				<xs:attribute name="class" type="MaintainableTypeCodelistType" use="optional"/>
 				<xs:attribute name="package" type="PackageTypeCodelistType" use="optional"/>
@@ -367,7 +389,7 @@
 			<xs:restriction base="MaintainableRefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="required"/>
 				<xs:attribute name="id" type="IDType" use="required"/>
-				<xs:attribute name="version" type="VersionType" use="optional" default="1.0"/>
+				<xs:attribute name="version" type="ExplicitVersionType" use="optional" default="1.0"/>
 				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
 				<xs:attribute name="class" type="ItemSchemeTypeCodelistType" use="optional"/>
 				<xs:attribute name="package" type="ItemSchemePackageTypeCodelistType" use="optional"/>
@@ -395,7 +417,7 @@
 			<xs:restriction base="MaintainableRefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="required"/>
 				<xs:attribute name="id" type="IDType" use="required"/>
-				<xs:attribute name="version" type="VersionType" use="optional" default="1.0"/>
+				<xs:attribute name="version" type="ExplicitVersionType" use="optional" default="1.0"/>
 				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
 				<xs:attribute name="class" type="StructureOrUsageTypeCodelistType" use="optional"/>
 				<xs:attribute name="package" type="StructurePackageTypeCodelistType" use="optional"/>				
@@ -411,7 +433,7 @@
 			<xs:restriction base="StructureOrUsageRefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="required"/>
 				<xs:attribute name="id" type="IDType" use="required"/>
-				<xs:attribute name="version" type="VersionType" use="optional" default="1.0"/>
+				<xs:attribute name="version" type="ExplicitVersionType" use="optional" default="1.0"/>
 				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
 				<xs:attribute name="class" type="StructureTypeCodelistType" use="optional"/>
 				<xs:attribute name="package" type="StructurePackageTypeCodelistType" use="optional"/>				
@@ -439,7 +461,7 @@
 			<xs:restriction base="StructureOrUsageRefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="required"/>
 				<xs:attribute name="id" type="IDType" use="required"/>
-				<xs:attribute name="version" type="VersionType" use="optional" default="1.0"/>
+				<xs:attribute name="version" type="ExplicitVersionType" use="optional" default="1.0"/>
 				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
 				<xs:attribute name="class" type="StructureUsageTypeCodelistType" use="optional"/>
 				<xs:attribute name="package" type="StructurePackageTypeCodelistType" use="optional"/>				
@@ -467,10 +489,10 @@
 			<xs:restriction base="RefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="required"/>
 				<xs:attribute name="maintainableParentID" type="IDType" use="required"/>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0"/>
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0"/>
 				<xs:attribute name="containerID" type="NestedIDType" use="prohibited"/>
 				<xs:attribute name="id" type="NestedIDType" use="required"/>
-				<xs:attribute name="version" type="VersionType" use="prohibited"/>
+				<xs:attribute name="version" type="ExplicitVersionType" use="prohibited"/>
 				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
 				<xs:attribute name="class" type="ObjectTypeCodelistType" use="optional"/>
 				<xs:attribute name="package" type="PackageTypeCodelistType" use="optional"/>
@@ -486,7 +508,7 @@
 			<xs:restriction base="RefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="required"/>
 				<xs:attribute name="maintainableParentID" type="IDType" use="required"/>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0"/>
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0"/>
 				<xs:attribute name="containerID" type="NestedIDType" use="optional"/>
 				<xs:attribute name="id" type="NestedIDType" use="required"/>
 				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
@@ -508,7 +530,7 @@
 						<xs:documentation>The maintainableParentID references the item scheme in which the item being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the item scheme in which the item being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -533,7 +555,7 @@
 						<xs:documentation>The maintainableParentID references the structure in which the component list being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the structure in which the component list being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -558,7 +580,7 @@
 						<xs:documentation>The maintainableParentID references the structure in which the component being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the structure in which the component being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -595,7 +617,7 @@
 		<xs:complexContent>
 			<xs:restriction base="StructureOrUsageRefBaseType">
 				<xs:attribute name="class" type="StructureOrUsageTypeCodelistType" use="required"/>
-				<xs:attribute name="package" type="StructurePackageTypeCodelistType" use="required"/>				
+				<xs:attribute name="package" type="StructurePackageTypeCodelistType" use="required"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -608,10 +630,10 @@
 			<xs:restriction base="RefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="prohibited"/>
 				<xs:attribute name="maintainableParentID" type="IDType" use="prohibited"/>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="prohibited"/>
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="prohibited"/>
 				<xs:attribute name="containerID" type="NestedIDType" use="optional"/>
 				<xs:attribute name="id" type="NestedIDType" use="required"/>
-				<xs:attribute name="version" type="VersionType" use="prohibited"/>
+				<xs:attribute name="version" type="ExplicitVersionType" use="prohibited"/>
 				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="true"/>
 				<xs:attribute name="class" type="ObjectTypeCodelistType" use="optional"/>
 				<xs:attribute name="package" type="PackageTypeCodelistType" use="optional"/>
@@ -703,7 +725,7 @@
 			<xs:restriction base="RefBaseType">
 				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="prohibited"/>
 				<xs:attribute name="maintainableParentID" type="IDType" use="prohibited"/>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="prohibited"/>
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="prohibited"/>
 				<xs:attribute name="containerID" type="IDType" use="optional">
 					<xs:annotation>
 						<xs:documentation>The containerID attribute references the hierarchy which defines the hierarchical code in the case that this reference is for a hierarchical code.</xs:documentation>
@@ -1149,7 +1171,7 @@
 						<xs:documentation>The maintainableParentID references the category scheme in which the category being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the category scheme in which the category being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -1242,7 +1264,7 @@
 						<xs:documentation>The maintainableParentID references the codelist in which the code being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the codelist in which the code being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -1371,7 +1393,7 @@
 						<xs:documentation>The maintainableParentID references the concept scheme in which the concept being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the concept scheme in which the concept being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -1494,7 +1516,7 @@
 						<xs:documentation>The maintainableParentID references the organisation scheme in which the organisation being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the organisation scheme in which the organisation being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -1962,7 +1984,7 @@
 						<xs:documentation>The maintainableParentID references the reporting taxonomy in which the reporting category being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the reporting taxonomy in which the reporting category being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -2139,7 +2161,7 @@
 						<xs:documentation>The maintainableParentID references the hierarchical codelist in which the code being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the hierarchical codelist in which the code being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -3556,7 +3578,7 @@
 						<xs:documentation>The maintainableParentID references the VTL mapping scheme in which the VTL mapping being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the VTL mapping scheme in which the VTL mapping being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -3651,7 +3673,7 @@
 						<xs:documentation>The maintainableParentID references the name personalisation scheme in which the name personalisation being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the name personalisation scheme in which the name personalisation being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -3746,7 +3768,7 @@
 						<xs:documentation>The maintainableParentID references the ruleset scheme in which the concept being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the ruleset scheme in which the ruleset being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -3841,7 +3863,7 @@
 						<xs:documentation>The maintainableParentID references the transformation scheme in which the transformation being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the transformation scheme in which the transformation being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -3936,7 +3958,7 @@
 						<xs:documentation>The maintainableParentID references the user defined operator scheme in which the user defined operator being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the user defined operator scheme in which the user defined operator being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
@@ -4031,7 +4053,7 @@
 						<xs:documentation>The maintainableParentID references the custom mask scheme in which the custom type being referenced is defined.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maintainableParentVersion" type="VersionType" use="optional" default="1.0">
+				<xs:attribute name="maintainableParentVersion" type="ExplicitVersionType" use="optional" default="1.0">
 					<xs:annotation>
 						<xs:documentation>The maintainableParentVersion attribute references the version of the custom type scheme in which the custom type being referenced is defined. If not supplied, a default value of 1.0 is assumed.</xs:documentation>
 					</xs:annotation>
