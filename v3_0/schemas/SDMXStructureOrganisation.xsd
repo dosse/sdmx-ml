@@ -17,6 +17,7 @@
 			<xs:restriction base="ItemSchemeType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -32,7 +33,7 @@
 			<xs:extension base="OrganisationSchemeBaseType">
 				<xs:sequence  minOccurs="0" maxOccurs="unbounded">
 					<xs:element ref="Organisation"/>
-				</xs:sequence>				
+				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -51,6 +52,7 @@
 			<xs:restriction base="ItemType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:choice minOccurs="0">
@@ -90,6 +92,7 @@
 			<xs:restriction base="OrganisationSchemeType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -110,6 +113,7 @@
 			<xs:restriction base="OrganisationSchemeType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -130,6 +134,7 @@
 			<xs:restriction base="OrganisationSchemeType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -150,6 +155,7 @@
 			<xs:restriction base="OrganisationSchemeType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:sequence minOccurs="0" maxOccurs="unbounded">
@@ -192,6 +198,7 @@
 			<xs:restriction base="OrganisationType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
@@ -213,6 +220,7 @@
 			<xs:restriction base="OrganisationType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
@@ -229,6 +237,7 @@
 			<xs:restriction base="OrganisationType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Contact" type="ContactType" minOccurs="0" maxOccurs="unbounded"/>
@@ -245,6 +254,7 @@
 			<xs:restriction base="OrganisationType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:choice minOccurs="0">

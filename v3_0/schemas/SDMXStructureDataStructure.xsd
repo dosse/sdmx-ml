@@ -17,6 +17,7 @@
 			<xs:restriction base="StructureType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:sequence minOccurs="0">
@@ -77,6 +78,7 @@
 			<xs:restriction base="ComponentListType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="common:IDType" use="optional" fixed="AttributeDescriptor">
 					<xs:annotation>
@@ -115,6 +117,7 @@
 			<xs:restriction base="ComponentType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
 					<xs:element name="LocalRepresentation" type="AttributeRepresentationType" minOccurs="0"/>
 				</xs:sequence>
@@ -221,6 +224,7 @@
 			<xs:restriction base="AttributeType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
 					<xs:element name="LocalRepresentation" type="ReportingYearStartDayRepresentationType"/>
 					<xs:element name="AttributeRelationship" type="AttributeRelationshipType"/>
@@ -273,6 +277,7 @@
 			<xs:restriction base="ComponentListType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="common:IDType" use="optional" fixed="DimensionDescriptor">
 					<xs:annotation>
@@ -305,6 +310,7 @@
 			<xs:restriction base="ComponentType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
 					<xs:element name="LocalRepresentation" type="DataStructureRepresentationType" minOccurs="0"/>
 				</xs:sequence>
@@ -353,6 +359,7 @@
 			<xs:restriction base="BaseDimensionType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
 					<xs:element name="LocalRepresentation" type="SimpleDataStructureRepresentationType" minOccurs="0"/>
 					<xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0" maxOccurs="unbounded"/>
@@ -376,6 +383,7 @@
 			<xs:restriction base="BaseDimensionType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
 					<xs:element name="LocalRepresentation" type="TimeDimensionRepresentationType"/>
 				</xs:sequence>
@@ -473,6 +481,7 @@
 			<xs:restriction base="ComponentListType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:sequence maxOccurs="unbounded">
 						<xs:element ref="Measure"/>
 					</xs:sequence>
@@ -496,6 +505,7 @@
 			<xs:restriction base="ComponentType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="ConceptIdentity" type="common:ConceptReferenceType"/>
 					<xs:element name="LocalRepresentation" type="MeasureRepresentationType" minOccurs="0"/>
 				</xs:sequence>

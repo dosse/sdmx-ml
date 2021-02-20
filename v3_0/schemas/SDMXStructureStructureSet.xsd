@@ -17,6 +17,7 @@
 			<xs:restriction base="common:MaintainableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -86,6 +87,7 @@
 			<xs:restriction base="common:NameableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -155,6 +157,7 @@
 			<xs:restriction base="ItemSchemeMapType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Source" type="common:OrganisationSchemeReferenceType"/>
@@ -196,6 +199,7 @@
 			<xs:restriction base="ItemSchemeMapType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Source" type="common:CategorySchemeReferenceType"/>
@@ -223,7 +227,7 @@
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element name="Source" type="common:LocalCategoryReferenceType"/>
-					<xs:element name="Target" type="common:LocalCategoryReferenceType"/>					
+					<xs:element name="Target" type="common:LocalCategoryReferenceType"/>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
@@ -237,13 +241,14 @@
 			<xs:restriction base="ItemSchemeMapType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Source" type="common:CodelistReferenceType"/>
 					<xs:element name="Target" type="common:CodelistReferenceType"/>
 					<xs:sequence maxOccurs="unbounded">
 						<xs:element ref="CodeMap"/>
-					</xs:sequence>					
+					</xs:sequence>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
@@ -264,7 +269,7 @@
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element name="Source" type="common:LocalCodeReferenceType"/>
-					<xs:element name="Target" type="common:LocalCodeReferenceType"/>					
+					<xs:element name="Target" type="common:LocalCodeReferenceType"/>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
@@ -278,13 +283,14 @@
 			<xs:restriction base="ItemSchemeMapType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Source" type="common:ConceptSchemeReferenceType"/>
 					<xs:element name="Target" type="common:ConceptSchemeReferenceType"/>
 					<xs:sequence maxOccurs="unbounded">
 						<xs:element ref="ConceptMap"/>
-					</xs:sequence>					
+					</xs:sequence>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
@@ -305,7 +311,7 @@
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element name="Source" type="common:LocalConceptReferenceType"/>
-					<xs:element name="Target" type="common:LocalConceptReferenceType"/>					
+					<xs:element name="Target" type="common:LocalConceptReferenceType"/>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
@@ -319,13 +325,14 @@
 			<xs:restriction base="ItemSchemeMapType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Source" type="common:ReportingTaxonomyReferenceType"/>
 					<xs:element name="Target" type="common:ReportingTaxonomyReferenceType"/>
 					<xs:sequence maxOccurs="unbounded">
 						<xs:element ref="ReportingCategoryMap"/>
-					</xs:sequence>					
+					</xs:sequence>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
@@ -346,7 +353,7 @@
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element name="Source" type="common:LocalReportingCategoryReferenceType"/>
-					<xs:element name="Target" type="common:LocalReportingCategoryReferenceType"/>					
+					<xs:element name="Target" type="common:LocalReportingCategoryReferenceType"/>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
@@ -360,6 +367,7 @@
 			<xs:restriction base="common:NameableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -425,6 +433,7 @@
 			<xs:restriction base="common:NameableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>

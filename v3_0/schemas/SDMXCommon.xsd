@@ -223,12 +223,44 @@
 		</xs:attribute>
 	</xs:complexType>
 
+	<xs:element name="Link" type="LinkType">
+		<xs:annotation>
+			<xs:documentation>Allows for the linking of other resources to identifiable objects. For example, if there is reference metadata associated with a structure, a link to the meatadata report can be dynamically inserted in the structure metadata.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:complexType name="LinkType">
+		<xs:attribute name="rel" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>The type of object that is being linked to.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="url" type="xs:anyURI" use="required">
+			<xs:annotation>
+				<xs:documentation>The url of the object being linked.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="urn" type="xs:anyURI" use="optional">
+			<xs:annotation>
+				<xs:documentation>A SDMX registry urn of the object being linked (if applicable).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="type" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>The type of link (e.g. PDF, text, HTML, reference metadata report).</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+
 	<xs:complexType name="IdentifiableType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>IdentifiableType is an abstract base type for all identifiable objects.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="AnnotableType">
+				<xs:sequence>
+					<xs:element ref="Link" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
 				<xs:attribute name="id" type="IDType" use="optional">
 					<xs:annotation>
 						<xs:documentation>The id is the identifier for the object.</xs:documentation>
@@ -303,6 +335,7 @@
 			<xs:restriction base="VersionableType">
 				<xs:sequence>
 					<xs:element ref="Annotations" minOccurs="0"/>
+					<xs:element ref="Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="Name" maxOccurs="unbounded"/>
 					<xs:element ref="Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>

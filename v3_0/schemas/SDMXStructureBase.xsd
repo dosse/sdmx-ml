@@ -42,6 +42,7 @@
 			<xs:restriction base="common:NameableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -74,6 +75,7 @@
 			<xs:restriction base="ItemType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
@@ -148,6 +150,7 @@
 			<xs:restriction base="common:IdentifiableType">
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
+					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="common:NCNameIDType" use="optional">
 					<xs:annotation>
