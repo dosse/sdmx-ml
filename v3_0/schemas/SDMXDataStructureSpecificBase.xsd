@@ -157,7 +157,7 @@
 		<xs:complexContent>
 			<xs:extension base="common:AnnotableType">
 				<xs:sequence>
-					<xs:element name="Comp" type="CompType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="Comp" type="CompType" minOccurs="0" maxOccurs="unbounded" form="unqualified" >
 						<xs:annotation>
 							<xs:documentation>Comp contains the details of observation measures or attributes that cannot be expressed as XML attributes.</xs:documentation>
 						</xs:annotation>

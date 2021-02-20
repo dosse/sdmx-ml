@@ -2656,15 +2656,15 @@
 		</xs:complexContent>
 	</xs:complexType>
 	
-	<xs:complexType name="PrimaryMeasureReferenceType">
+	<xs:complexType name="MeasureReferenceType">
 		<xs:annotation>
-			<xs:documentation>PrimaryMeasureReferenceType is a type for referencing a primary measure object. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
+			<xs:documentation>MeasureReferenceType is a type for referencing a measure. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="ComponentReferenceType">
 				<xs:choice>
 					<xs:sequence>
-						<xs:element name="Ref" type="PrimaryMeasureRefType" form="unqualified"/>
+						<xs:element name="Ref" type="MeasureRefType" form="unqualified"/>
 						<xs:element name="URN" type="xs:anyURI" form="unqualified" minOccurs="0"/>
 					</xs:sequence>
 					<xs:element name="URN" type="xs:anyURI" form="unqualified"/>
@@ -2673,47 +2673,46 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="PrimaryMeasureRefType">
+	<xs:complexType name="MeasureRefType">
 		<xs:annotation>
-			<xs:documentation>PrimaryMeasureRefType contains a reference to the primary measure within a data structure definition. Note that since there is only one key descriptor, the container reference fields are prohibited.</xs:documentation>
+			<xs:documentation>MeasureRefType contains a reference to a measure within a data structure definition. Note that since there is only one key descriptor, the container reference fields are prohibited.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="ComponentRefBaseType">
 				<xs:attribute name="containerID" type="IDType" use="prohibited"/>
-				<xs:attribute name="id" type="IDType" use="required" fixed="OBS_VALUE"/>
-				<xs:attribute name="class" type="ComponentTypeCodelistType" use="optional" fixed="PrimaryMeasure"/>
+				<xs:attribute name="id" type="IDType" use="required"/>
+				<xs:attribute name="class" type="ComponentTypeCodelistType" use="optional" fixed="Measure"/>
 				<xs:attribute name="package" type="StructurePackageTypeCodelistType" use="optional" fixed="datastructure"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="LocalPrimaryMeasureReferenceType">
+	<xs:complexType name="LocalMeasureReferenceType">
 		<xs:annotation>
-			<xs:documentation>LocalPrimaryMeasureReferenceType is a type for referencing a primary measure locally, where the reference to the data structure definition which defines the primary measure is provided in another context (for example the data structure definition in which the reference occurs).</xs:documentation>
+			<xs:documentation>LocalMeasureReferenceType is a type for referencing a measure locally, where the reference to the data structure definition which defines the primary measure is provided in another context (for example the data structure definition in which the reference occurs).</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="LocalComponentReferenceBaseType">
 				<xs:sequence>
-					<xs:element name="Ref" type="LocalPrimaryMeasureRefType" form="unqualified"/>
+					<xs:element name="Ref" type="LocalMeasureRefType" form="unqualified"/>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="LocalPrimaryMeasureRefType">
+	<xs:complexType name="LocalMeasureRefType">
 		<xs:annotation>
-			<xs:documentation>LocalPrimaryMeasureRefType contains the reference fields for referencing a primary measure locally.</xs:documentation>
+			<xs:documentation>LocalMeasureRefType contains the reference fields for referencing a measure locally.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="LocalComponentRefBaseType">
-				<xs:attribute name="id" type="IDType" use="required" fixed="OBS_VALUE"/>
-				<xs:attribute name="class" type="ComponentTypeCodelistType" use="optional" fixed="PrimaryMeasure"/>
+				<xs:attribute name="id" type="IDType" use="required"/>
+				<xs:attribute name="class" type="ComponentTypeCodelistType" use="optional" fixed="Measure"/>
 				<xs:attribute name="package" type="StructurePackageTypeCodelistType" use="optional" fixed="datastructure"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
 
-	
 	<xs:complexType name="LocalDataStructureComponentReferenceType">
 		<xs:annotation>
 			<xs:documentation>LocalDataStructureComponentReferenceType is a type for referencing any type of data structure component locally, where the reference for the data structure definition which defines the components is available in another context.</xs:documentation>
@@ -4218,7 +4217,7 @@
 			<xs:enumeration value="OrganisationSchemeMap"/>
 			<xs:enumeration value="OrganisationUnit"/>
 			<xs:enumeration value="OrganisationUnitScheme"/>
-			<xs:enumeration value="PrimaryMeasure"/>
+			<xs:enumeration value="Measure"/>
 			<xs:enumeration value="Process"/>
 			<xs:enumeration value="ProcessStep"/>
 			<xs:enumeration value="ProvisionAgreement"/>
@@ -4486,7 +4485,7 @@
 			<xs:enumeration value="DimensionDescriptorValuesTarget"/>
 			<xs:enumeration value="MeasureDimension"/>
 			<xs:enumeration value="MetadataAttribute"/>
-			<xs:enumeration value="PrimaryMeasure"/>
+			<xs:enumeration value="Measure"/>
 			<xs:enumeration value="ReportingYearStartDay"/>
 			<xs:enumeration value="ReportPeriodTarget"/>
 			<xs:enumeration value="TimeDimension"/>
@@ -4501,7 +4500,7 @@
 			<xs:enumeration value="Attribute"/>
 			<xs:enumeration value="Dimension"/>
 			<xs:enumeration value="MeasureDimension"/>
-			<xs:enumeration value="PrimaryMeasure"/>
+			<xs:enumeration value="Measure"/>
 			<xs:enumeration value="ReportingYearStartDay"/>
 			<xs:enumeration value="TimeDimension"/>
 		</xs:restriction>
@@ -4885,9 +4884,9 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="PrimaryMeasure" type="EmptyType">
+	<xs:element name="Measure" type="EmptyType">
 		<xs:annotation>
-			<xs:documentation>PrimaryMeasure is an empty element that denotes a primary measure object.</xs:documentation>
+			<xs:documentation>Measure is an empty element that denotes a measure object.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 
@@ -5076,7 +5075,7 @@
 			<xs:element ref="OrganisationSchemeMap" minOccurs="0"/>
 			<xs:element ref="OrganisationUnit" minOccurs="0"/>
 			<xs:element ref="OrganisationUnitScheme" minOccurs="0"/>
-			<xs:element ref="PrimaryMeasure" minOccurs="0"/>
+			<xs:element ref="Measure" minOccurs="0"/>
 			<xs:element ref="Process" minOccurs="0"/>
 			<xs:element ref="ProcessStep" minOccurs="0"/>
 			<xs:element ref="ProvisionAgreement" minOccurs="0"/>

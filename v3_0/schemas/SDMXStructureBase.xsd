@@ -197,29 +197,6 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:simpleType name="UsageStatusType">
-		<xs:annotation>
-			<xs:documentation>UsageStatusType provides a list of enumerated types for indicating whether reporting a given attribute is mandatory or conditional.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:NMTOKEN">
-			<xs:enumeration value="Mandatory">
-				<xs:annotation>
-					<xs:documentation>Reporting the associated attribute is mandatory - a value must be supplied.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Conditional">
-				<xs:annotation>
-					<xs:documentation>Reporting the associated attribute is not mandatory - a value may  be supplied, but is not required.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Metadata">
-				<xs:annotation>
-					<xs:documentation>The associated attribute is reported as reference metadata.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-	
 	<xs:complexType name="RepresentationType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>RepresentationType is an abstract type that defines a representation. Because the type of item schemes that are allowed as the an enumeration vary based on the object in which this is defined, this type is abstract to force that the enumeration reference be restricted to the proper type of item scheme reference.</xs:documentation>
