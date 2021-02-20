@@ -8,11 +8,9 @@
 		<xs:documentation>The generic metadata namespace module describes a generic format for the reporting of reference metadata, regardless of the underlying metadata structure definition.</xs:documentation>
 	</xs:annotation>
 
-	<!-- TODO Confirm that the structure of referencing a provision agreement or a provider + flow or structure is correct -->
-	<!-- TODO Model shows this deriving from maintainable - is that correct? What is the relation of the agencyId to the metadata provider? -->
 	<xs:complexType name="MetadataSetType">
 			<xs:annotation>
-				<xs:documentation>MetadataSetType describes the structure for a metadata set, which contains a collection of reported metadata against a set of values for a given full or partial target identifier, as described in a metadata structure definition. The metadata set may contain reported metadata for multiple report structures defined in a metadata structure definition.</xs:documentation>
+				<xs:documentation>MetadataSetType describes the structure for a metadata set, which contains a collection of reported metadata against a set of targets. The targets should conform to the restrictions described by the metadata provision or the metadataflow. Note that this is maintainble, and as such must specify in agency. In this case, the agency is the metadata provider. If a metadata provision agreement is referenced, it is assumed that the metadata provider described in the provsion will be the same as the agency for this set.</xs:documentation>
 			</xs:annotation>
 			<xs:complexContent>
 				<xs:extension base="common:MaintainableType">
@@ -23,25 +21,16 @@
 								<xs:documentation>Metadataflow provides a reference to the.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:sequence>
-							<xs:element name="MetadataDataProvider" type="common:DataProviderReferenceType">
-								<xs:annotation>
-									<xs:documentation>MetadataDataProvider provides a reference to an organisation with the role of metadata provider that is providing this metadata set.</xs:documentation>
-								</xs:annotation>
-							</xs:element>
-							<xs:choice>
-								<xs:element name="Metadataflow" type="common:MetadataflowReferenceType">
-									<xs:annotation>
-										<xs:documentation>Metadataflow provides a reference to the metadataflow the metadata set is being reported against.</xs:documentation>
-									</xs:annotation>
-								</xs:element>
-								<xs:element name="MetadataStructure" type="common:MetadataStructureReferenceType">
-									<xs:annotation>
-										<xs:documentation>MetadataStructure provides a reference to the metadata structure defintion that defines the structure the metadata set.</xs:documentation>
-									</xs:annotation>
-								</xs:element>
-							</xs:choice>
-						</xs:sequence>
+						<xs:element name="Metadataflow" type="common:MetadataflowReferenceType">
+							<xs:annotation>
+								<xs:documentation>Metadataflow provides a reference to the metadataflow the metadata set is being reported against.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="MetadataStructure" type="common:MetadataStructureReferenceType">
+							<xs:annotation>
+								<xs:documentation>MetadataStructure provides a reference to the metadata structure defintion that defines the structure the metadata set.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
 					</xs:choice>
 					<xs:element name="Target" type="common:WildcardObjectReferenceType" maxOccurs="unbounded">
 						<xs:annotation>
