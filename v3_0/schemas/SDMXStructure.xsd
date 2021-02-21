@@ -118,13 +118,36 @@
 					<xs:field xpath="@agencyID"/>
 					<xs:field xpath="@version"/>
 				</xs:unique>
+				<xs:unique name="UniqueGeographicCodelist">
+					<xs:selector xpath="structure:GeographicCodelist"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+				<xs:unique name="UniqueGeoGridCodelist">
+					<xs:selector xpath="structure:GeoGridCodelist"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
 			</xs:element>
-			<xs:element name="HierarchicalCodelists" type="HierarchicalCodelistsType" minOccurs="0">
+			<xs:element name="Hierarchies" type="HierarchiesType" minOccurs="0">
 				<xs:annotation>
-					<xs:documentation>HierarchicalCodelists contains a collection of hierarchical code list descriptions. The hierarchical code lists may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+					<xs:documentation>Hierarchies contains a collection of hierarchical code list descriptions. The hierarchical code lists may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
 				</xs:annotation>
-				<xs:unique name="UniqueHierarchicalCodelist">
-					<xs:selector xpath="structure:HierarchicalCodelist"/>
+				<xs:unique name="UniqueHierarchy">
+					<xs:selector xpath="structure:Hierarchy"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="HierarchyAssociations" type="HierarchyAssociationsType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>HierarchyAssociations contains a collection of hierarchy associations. The associations may be detailed in full, or referenced from an external structure document or registry service.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueHierarchyAssociation">
+					<xs:selector xpath="structure:HierarchyAssociation"/>
 					<xs:field xpath="@id"/>
 					<xs:field xpath="@agencyID"/>
 					<xs:field xpath="@version"/>
@@ -395,10 +418,10 @@
 
 	<xs:complexType name="CodelistsType">
 		<xs:annotation>
-			<xs:documentation>CodelistsType describes the structure of the code lists container. It contains one or more code list, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+			<xs:documentation>CodelistsType describes the structure of the code lists container. It contains one or more codelist (including geographic), which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
 		</xs:annotation>
-		<xs:sequence>
-			<xs:element name="Codelist" type="CodelistType" maxOccurs="unbounded">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="Codelist" type="CodelistType">
 				<xs:annotation>
 					<xs:documentation>Codelist provides the details of a code list, which is defined as a list from which some statistical concepts (coded concepts) take their values.</xs:documentation>
 				</xs:annotation>
@@ -407,26 +430,57 @@
 					<xs:field xpath="@id"/>
 				</xs:unique>
 			</xs:element>
-		</xs:sequence>
+			<xs:element name="GeographicCodelist" type="GeographicCodelistType">
+				<xs:annotation>
+					<xs:documentation>GeographiCodelist provides the details of a georaphic code list, which comprises a set of GeoFeatureSetCodes, by adding a value in the Code that follows a pattern to represent a geo feature set.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="Codelist_UniqueGeoFeatureSetCode">
+					<xs:selector xpath="structure:GeoFeatureSetCode"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="GeoGridCodelist" type="GeoGridCodelistType">
+				<xs:annotation>
+					<xs:documentation>GeoGridCodelist provides the details of a georaphic grid code list, which comprises a set of GridCodes, which are related to the gridDefinition specified in the GeoGridCodelist.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="Codelist_UniqueGeoGridCode">
+					<xs:selector xpath="structure:GeoGridCode"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:choice>
 	</xs:complexType>
 
-	<xs:complexType name="HierarchicalCodelistsType">
+	<xs:complexType name="HierarchiesType">
 		<xs:annotation>
-			<xs:documentation>HierarchicalCodelistsType describes the structure of the hierarchical code lists container. It contains one or more hierarchical code list, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+			<xs:documentation>HierarchiesType describes the structure of the hierarchies container. It contains one or more hierarchy, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="HierarchicalCodelist" type="HierarchicalCodelistType" maxOccurs="unbounded">
+			<xs:element name="Hierarchy" type="HierarchyType" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>HierarchicalCodelist provides the details of a hierarchical code list, which is defined as an organised collection of codes that may participate in many parent/child relationships with other codes in the list, as defined by one or more hierarchy of the list.</xs:documentation>
+					<xs:documentation>Hierarchy provides the details of a hierarchy, which is defined as an organised collection of codes that may participate in many parent/child relationships with other codes in the list.</xs:documentation>
 				</xs:annotation>
-				<xs:unique name="HierarchicalCodelist_UniqueHierarchy">
-					<xs:selector xpath="structure:Hierarchy"/>
+				<xs:unique name="Hierarchiy_UniqueLevel">
+					<xs:selector xpath=".//structure:Level"/>
 					<xs:field xpath="@id"/>
-				</xs:unique>	
-				<xs:unique name="HierarchicalCodelist_UniqueCodelistAlias">
-					<xs:selector xpath="structure:IncludedCodelistReference"/>
-					<xs:field xpath="@alias"/>
 				</xs:unique>
+				<xs:unique name="Hierarchiy_UniqueHierarchicalCode">
+					<xs:selector xpath=".//structure:HierarchicalCode"/>
+					<xs:field xpath="@id"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="HierarchyAssociationsType">
+		<xs:annotation>
+			<xs:documentation>HiearchyAssociationsType describes the structure of the hierarchy assoications container. It contains one or more hiearchy associations, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="HierarchyAssociation" type="HierarchyAssociationType" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>HierarchyAssociation provides the details of a hiearchy assoication, which associates a hiearchy with an identifiable object in the context of another object.</xs:documentation>
+				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>

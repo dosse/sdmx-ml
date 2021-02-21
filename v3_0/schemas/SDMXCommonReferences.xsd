@@ -2020,41 +2020,12 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="HierarchicalCodelistReferenceType">
+	<xs:complexType name="HierarchyReferenceType">
 		<xs:annotation>
-			<xs:documentation>HierarchicalCodelistReferenceType is a type for referencing a hierarchical codelist object. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
+			<xs:documentation>HierarchyReferenceType is a type for referencing a hierarchy object. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="MaintainableReferenceBaseType">
-				<xs:choice>
-					<xs:sequence>
-						<xs:element name="Ref" type="HierarchicalCodelistRefType" form="unqualified"/>
-						<xs:element name="URN" type="xs:anyURI" form="unqualified" minOccurs="0"/>
-					</xs:sequence>
-					<xs:element name="URN" type="xs:anyURI" form="unqualified"/>
-				</xs:choice>
-			</xs:restriction>
-		</xs:complexContent>
-	</xs:complexType>	
-
-	<xs:complexType name="HierarchicalCodelistRefType">
-		<xs:annotation>
-			<xs:documentation>HierarchicalCodelistRefType contains a set of reference fields for a hierarchical codelist.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="MaintainableRefBaseType">
-				<xs:attribute name="class" type="MaintainableTypeCodelistType" use="optional" fixed="HierarchicalCodelist"/>
-				<xs:attribute name="package" type="ItemSchemePackageTypeCodelistType" use="optional" fixed="codelist"/>
-			</xs:restriction>
-		</xs:complexContent>
-	</xs:complexType>
-	
-	<xs:complexType name="HierarchyReferenceType">
-		<xs:annotation>
-			<xs:documentation>HierarchyReferenceType is a type for referencing a hierarchy within a hierarchical codelist.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="ChildObjectReferenceType">
 				<xs:choice>
 					<xs:sequence>
 						<xs:element name="Ref" type="HierarchyRefType" form="unqualified"/>
@@ -2064,17 +2035,16 @@
 				</xs:choice>
 			</xs:restriction>
 		</xs:complexContent>
-	</xs:complexType>
-	
+	</xs:complexType>	
+
 	<xs:complexType name="HierarchyRefType">
 		<xs:annotation>
-			<xs:documentation>HierarchyRefType is type which references a hierarchy from within a hierarchical codelist. Reference fields are required for both the hierarchy and the codelist.</xs:documentation>
+			<xs:documentation>HierarchyRefType contains a set of reference fields for a hierarchy.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="ChildObjectRefBaseType">
-				<xs:attribute name="id" type="IDType" use="required"/>
-				<xs:attribute name="class" type="ObjectTypeCodelistType" use="optional" fixed="Hierarchy"/>
-				<xs:attribute name="package" type="PackageTypeCodelistType" use="optional" fixed="codelist"/>
+			<xs:restriction base="MaintainableRefBaseType">
+				<xs:attribute name="class" type="MaintainableTypeCodelistType" use="optional" fixed="Hierarchy"/>
+				<xs:attribute name="package" type="ItemSchemePackageTypeCodelistType" use="optional" fixed="codelist"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -4195,8 +4165,8 @@
 			<xs:enumeration value="DimensionDescriptorValuesTarget"/>
 			<xs:enumeration value="GroupDimensionDescriptor"/>
 			<xs:enumeration value="HierarchicalCode"/>
-			<xs:enumeration value="HierarchicalCodelist"/>
 			<xs:enumeration value="Hierarchy"/>
+			<xs:enumeration value="HierarchyAssociation"/>
 			<xs:enumeration value="HybridCodelistMap"/>
 			<xs:enumeration value="HybridCodeMap"/>
 			<xs:enumeration value="IdentifiableObjectTarget"/>
@@ -4263,7 +4233,8 @@
 			<xs:enumeration value="DataProviderScheme"/>
 			<xs:enumeration value="DataStructure"/>
 			<xs:enumeration value="DefinitionScheme"/>
-			<xs:enumeration value="HierarchicalCodelist"/>
+			<xs:enumeration value="Hierarchy"/>
+			<xs:enumeration value="HierarchyAssociation"/>
 			<xs:enumeration value="Metadataflow"/>
 			<xs:enumeration value="MetadataProvisionAgreement"/>
 			<xs:enumeration value="MetadataStructure"/>
@@ -4298,7 +4269,8 @@
 			<xs:enumeration value="DataConsumerScheme"/>
 			<xs:enumeration value="DataProviderScheme"/>
 			<xs:enumeration value="DataStructure"/>
-			<xs:enumeration value="HierarchicalCodelist"/>
+			<xs:enumeration value="Hierarchy"/>
+			<xs:enumeration value="HierarchyAssociation"/>
 			<xs:enumeration value="Metadataflow"/>
 			<xs:enumeration value="MetadataProvisionAgreement"/>
 			<xs:enumeration value="MetadataStructure"/>
@@ -4321,7 +4293,7 @@
 		</xs:annotation>
 		<xs:restriction base="MaintainableTypeCodelistType">
 			<xs:enumeration value="Codelist"/>
-			<xs:enumeration value="HierarchicalCodelist"/>
+			<xs:enumeration value="Hierarchy"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -4764,18 +4736,18 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="HierarchicalCodelist" type="EmptyType">
+	<xs:element name="Hierarchy" type="EmptyType">
 		<xs:annotation>
-			<xs:documentation>HierarchicalCodelist is an empty element that denotes a hierarchical codelist object.</xs:documentation>
+			<xs:documentation>Hierarchy is an empty element that denotes a hierarchy.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="Hierarchy" type="EmptyType">
+	<xs:element name="HierarchyAssociation" type="EmptyType">
 		<xs:annotation>
-			<xs:documentation>Hierarchy is an empty element that denotes a hierarchy within a hiearcharchical codelist.</xs:documentation>
+			<xs:documentation>HierarchyAssociation is an empty element that denotes a hierarchy assoication object.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	
+
 	<xs:element name="HybridCodelistMap" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>HybridCodelistMap is an empty element that denotes a hybrid codelist map object.</xs:documentation>
@@ -5055,8 +5027,8 @@
 			<xs:element ref="DimensionDescriptorValuesTarget" minOccurs="0"/>
 			<xs:element ref="GroupDimensionDescriptor" minOccurs="0"/>
 			<xs:element ref="HierarchicalCode" minOccurs="0"/>
-			<xs:element ref="HierarchicalCodelist" minOccurs="0"/>
 			<xs:element ref="Hierarchy" minOccurs="0"/>
+			<xs:element ref="HierarchyAssociation" minOccurs="0"/>
 			<xs:element ref="HybridCodelistMap" minOccurs="0"/>
 			<xs:element ref="HybridCodeMap" minOccurs="0"/>
 			<xs:element ref="IdentifiableObjectTarget" minOccurs="0"/>
@@ -5118,7 +5090,8 @@
 					<xs:element ref="DataConsumerScheme" minOccurs="0"/>
 					<xs:element ref="DataProviderScheme" minOccurs="0"/>
 					<xs:element ref="DataStructure" minOccurs="0"/>
-					<xs:element ref="HierarchicalCodelist" minOccurs="0"/>
+					<xs:element ref="Hierarchy" minOccurs="0"/>
+					<xs:element ref="HierarchyAssociation" minOccurs="0"/>
 					<xs:element ref="Metadataflow" minOccurs="0"/>
 					<xs:element ref="MetadataProvisionAgreement" minOccurs="0"/>
 					<xs:element ref="MetadataStructure" minOccurs="0"/>

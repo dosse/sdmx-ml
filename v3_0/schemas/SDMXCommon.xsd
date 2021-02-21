@@ -1089,7 +1089,7 @@
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:extension base="xs:string">
-				<xs:attribute name="cascadeValues" type="xs:boolean" use="optional" default="false">
+				<xs:attribute name="cascadeValues" type="CascadeSelectionType" use="optional" default="false">
 					<xs:annotation>
 						<xs:documentation>The cascadeValues attribute, if true, indicates that if the value is taken from a code all child codes in a simple hierarchy are understood be included in the region.</xs:documentation>
 					</xs:annotation>
@@ -1104,7 +1104,7 @@
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:restriction base="SimpleComponentValueType">
-				<xs:attribute name="cascadeValues" type="xs:boolean" use="prohibited"/>
+				<xs:attribute name="cascadeValues" type="CascadeSelectionType" use="prohibited"/>
 			</xs:restriction>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -1569,6 +1569,19 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
+	
+	<xs:simpleType name="CascadeSelectionType">
+		<xs:union memberTypes="xs:boolean ExcludeRootType"/>
+	</xs:simpleType>
+	
+	<xs:simpleType name="ExcludeRootType">
+		<xs:annotation>
+			<xs:documentation>ExcludeRootType is a single enumerated value that indciates that child values should be included, but that the actuall root should not.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="excluderoot"/>
+		</xs:restriction>
+	</xs:simpleType>
 	
 	<xs:simpleType name="ObservationDimensionType">
 		<xs:annotation>
