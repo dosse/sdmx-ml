@@ -16,7 +16,7 @@
 	<xs:include schemaLocation="SDMXStructureProvisionAgreement.xsd"/>
 	<xs:include schemaLocation="SDMXStructureProcess.xsd"/>
 	<xs:include schemaLocation="SDMXStructureReportingTaxonomy.xsd"/>
-	<xs:include schemaLocation="SDMXStructureStructureSet.xsd"/>
+	<xs:include schemaLocation="SDMXStructureStructureMappings.xsd"/>
 	<xs:include schemaLocation="SDMXStructureTransformation.xsd"/>
 
 	<xs:annotation>
