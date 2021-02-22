@@ -421,11 +421,6 @@
 			<xs:extension base="GroupBaseType">
 				<xs:choice>
 					<xs:element ref="GroupDimension" maxOccurs="unbounded"/>
-					<xs:element name="AttachmentConstraint" type="common:AttachmentConstraintReferenceType">
-						<xs:annotation>
-							<xs:documentation>AttachmentConstraint references an attachment constraint that defines the key sets and/or cube regions that attributes may be attached to. This is an alternative to referencing the dimensions, and allows attributes to be attached to data for given values of dimensions.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
 				</xs:choice>
 			</xs:extension>
 		</xs:complexContent>

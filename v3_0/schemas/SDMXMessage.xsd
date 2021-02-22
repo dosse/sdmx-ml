@@ -503,7 +503,7 @@
 						<xs:annotation>
 							<xs:documentation>Timezone specifies the time zone of the sender, and if specified can be applied to all un-time zoned time values in the message. In the absence of this, any dates without time zone are implied to be in an indeterminate "local time".</xs:documentation>
 						</xs:annotation>
-					</xs:element>					
+					</xs:element>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
