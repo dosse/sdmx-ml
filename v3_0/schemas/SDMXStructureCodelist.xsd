@@ -151,6 +151,7 @@
 					<xs:sequence minOccurs="0" maxOccurs="unbounded">
 						<xs:element ref="GeoRefCode"/>
 					</xs:sequence>
+					<xs:element name="CodelistExtension" type="CodelistExtensionType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:restriction>
 		</xs:complexContent>
@@ -200,6 +201,7 @@
 					<xs:sequence minOccurs="0" maxOccurs="unbounded">
 						<xs:element ref="GeoFeatureSetCode"/>
 					</xs:sequence>
+					<xs:element name="CodelistExtension" type="CodelistExtensionType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="geoType" type="GeoCodelistTypeType" use="required" fixed="GeographicCodelist"/>
 			</xs:restriction>
@@ -241,6 +243,7 @@
 					<xs:sequence minOccurs="0" maxOccurs="unbounded">
 						<xs:element ref="GeoGridCode"/>
 					</xs:sequence>
+					<xs:element name="CodelistExtension" type="CodelistExtensionType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="geoType" type="GeoCodelistTypeType" use="required" fixed="GeoGridCodelist"/>
 			</xs:restriction>
