@@ -603,16 +603,24 @@
 		<xs:annotation>
 			<xs:documentation>ConstraintsType describes the structure of the constraints container. It contains one or more constraint, which can be explicitly detailed or referenced from an external structure document or registry service. This container may contain both attachment and content constraints.</xs:documentation>
 		</xs:annotation>
-		<xs:choice maxOccurs="unbounded">	
-			<xs:element name="AttachmentConstraint" type="AttachmentConstraintType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="DataConstraint" type="MetadataConstraintType">
 				<xs:annotation>
-					<xs:documentation>AttachmentConstraint describes sub sets of the content of a data or metadata set in terms of the content regions or in terms of the set of key combinations to which attributes or reference metadata (as defined by structure definitions) may be attached.</xs:documentation>
+					<xs:documentation>DataConstraint specifies a sub set of the definition of the allowable or available content of a data set in terms of the content or in terms of the set of key combinations.</xs:documentation>
 				</xs:annotation>
-			</xs:element>	
-			<xs:element name="ContentConstraint" type="ContentConstraintType">
+				<xs:unique name="DataConstraint_CubeRegionInclusion">
+					<xs:selector xpath="structure:CubeRegion"/>
+					<xs:field xpath="@include"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="MetadataConstraint" type="MetadataConstraintType">
 				<xs:annotation>
-					<xs:documentation>ContentConstraint specifies a sub set of the definition of the allowable or available content of a data or metadata set in terms of the content or in terms of the set of key combinations.</xs:documentation>
+					<xs:documentation>MetadataConstraint specifies a sub set of the definition of the allowable content of a metadata set.</xs:documentation>
 				</xs:annotation>
+				<xs:unique name="MetadataConstraint_MetadataTargetRegionInclusion">
+					<xs:selector xpath="structure:MetadataTragetRegion"/>
+					<xs:field xpath="@include"/>
+				</xs:unique>
 			</xs:element>
 		</xs:choice>
 	</xs:complexType>
