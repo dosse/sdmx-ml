@@ -8,7 +8,6 @@
 		<xs:documentation>The core base structure specific data module contains the descriptions of base structure specific data set format. The data set defined here describes the structure of the data set in all structure specific data messages. Any structure specific data messages must derive the data set from this format. The entire structure declared for the is data set is abstract, meaning that instances will have to be based on types derived from these structures in schemas created based on the details data structure definition.</xs:documentation>
 	</xs:annotation>
 
-	<!-- TODO Combing structure of Atts and Group -->
 	<xs:complexType name="DataSetType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>

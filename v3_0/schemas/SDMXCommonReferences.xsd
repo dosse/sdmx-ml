@@ -78,10 +78,9 @@
 		</xs:restriction>
 	</xs:simpleType>	
 	
-	<!-- TODO Need refernces for describing semantic versioning formats -->
 	<xs:simpleType name="VersionType">
 		<xs:annotation>
-			<xs:documentation>VersionType is used to communicate version information. Semantic versioning, based on 3 or 4 version parts (major.minor.patch[-extension]) is supported. See [INSERT_REFERENCE] for more detail on semantic versioning. The legency SDMX version format is also support.</xs:documentation>
+			<xs:documentation>VersionType is used to communicate version information. Semantic versioning, based on 3 or 4 version parts (major.minor.patch[-extension]) is supported. The legency SDMX version format is also support.</xs:documentation>
 		</xs:annotation>
 		<xs:union memberTypes="LegacyVersionNumberType SemanticVersionNumberType"/>
 	</xs:simpleType>
@@ -95,7 +94,7 @@
 
 	<xs:simpleType name="SemanticVersionNumberType">
 		<xs:annotation>
-			<xs:documentation>SemanticVersionNumberType is a simple type for validating semantic version in the format (major.minor.patch[-extension]). See [INSERT_REFERNCE] for a complete description of the semantic versioning format.</xs:documentation>
+			<xs:documentation>SemanticVersionNumberType is a simple type for validating semantic version in the format (major.minor.patch[-extension]).</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
 			<xs:pattern value="(0|[1-9]\d*)(\.(0|[1-9]\d*)){2}(\-(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*))(\.(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*)))*)?"/>

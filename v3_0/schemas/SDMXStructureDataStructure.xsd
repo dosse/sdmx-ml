@@ -454,7 +454,7 @@
 
 	<xs:element name="MeasureList" type="MeasureListType" substitutionGroup="ComponentList">
 		<xs:annotation>
-			<xs:documentation>MeasureList describes the measure descriptor for a key family. It contains a single metadata concepts that define the primary measures of a data structure.</xs:documentation>
+			<xs:documentation>MeasureList describes the measure descriptor for a key family.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 
@@ -484,7 +484,7 @@
 
 	<xs:complexType name="MeasureBaseType" abstract="true">
 		<xs:annotation>
-			<xs:documentation></xs:documentation>
+			<xs:documentation>MeasureBaseType is an abstract base type that refines ComponentType to rerstrict the represenations to those which are applicable for a measure.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="ComponentType">
@@ -500,18 +500,18 @@
 
 	<xs:complexType name="MeasureType">
 		<xs:annotation>
-			<xs:documentation></xs:documentation>
+			<xs:documentation>MeasureType defines the structure of a measure descriptor. In addition to the identifying concept and representation, a usage status and max occurs can be defined.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="MeasureBaseType">
 				<xs:attribute name="usageStatus" type="UsageStatusType" use="optional" default="Conditional">
 					<xs:annotation>
-						<xs:documentation></xs:documentation>
+						<xs:documentation>Indicates whether the measure is mandatory or conditional.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="maxOccurs" type="common:OccurenceType" default="1">
 					<xs:annotation>
-						<xs:documentation>The maxOccurs attribute indicates the maximum number of times this metadata attribute can occur within its parent object.</xs:documentation>
+						<xs:documentation>The maxOccurs attribute indicates the maximum number of times this measure can occur within an observation.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
