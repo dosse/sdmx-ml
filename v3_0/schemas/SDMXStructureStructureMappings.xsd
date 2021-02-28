@@ -202,11 +202,15 @@
 		<xs:complexContent>
 			<xs:extension base="common:IdentifiableType">
 				<xs:sequence>
+					<xs:element name="Source" type="common:LocalComponentListComponentReferenceType"/>
+					<xs:element name="Target" type="common:LocalComponentListComponentReferenceType"/>
 					<xs:choice>
-						<xs:element name="FrequencyDimension" type="common:LocalComponentListComponentReferenceType"/>
+						<xs:sequence>
+								<xs:element name="FrequencyDimension" type="common:LocalComponentListComponentReferenceType"/>
+								<xs:element name="MappedFequencies" type="common:LocalFrequencyFormatMappingReferenceType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
 						<xs:element name="TargetFrequencyID" type="xs:string"/>
 					</xs:choice>
-					<xs:element name="MappedFequencies" type="common:LocalFrequencyFormatMappingReferenceType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -229,7 +233,6 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<!-- TODO What is ValueList? There is not description of this in the model. -->
 	<xs:complexType name="RepresentationMapType">
 		<xs:complexContent>
 			<xs:extension base="common:MaintainableType">
@@ -248,7 +251,6 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<!-- TODO Confirm that reusing this in the item scheme and representation maps makes sense. -->
 	<xs:complexType name="ValueMappingType">
 		<xs:complexContent>
 			<xs:extension base="common:AnnotableType">
