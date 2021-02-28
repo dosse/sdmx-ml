@@ -4097,6 +4097,7 @@
 			<xs:enumeration value="Transition"/>
 			<xs:enumeration value="UserDefinedOperator"/>
 			<xs:enumeration value="UserDefinedOperatorScheme"/>
+			<xs:enumeration value="ValueList"/>
 			<xs:enumeration value="VtlMapping"/>
 			<xs:enumeration value="VtlMappingScheme"/>
 		</xs:restriction>
@@ -4143,6 +4144,7 @@
 			<xs:enumeration value="StructureMap"/>
 			<xs:enumeration value="TransformationScheme"/>
 			<xs:enumeration value="UserDefinedOperatorScheme"/>
+			<xs:enumeration value="ValueList"/>
 			<xs:enumeration value="VtlMappingScheme"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -4183,6 +4185,7 @@
 			<xs:enumeration value="StructureMap"/>
 			<xs:enumeration value="TransformationScheme"/>
 			<xs:enumeration value="UserDefinedOperatorScheme"/>
+			<xs:enumeration value="ValueList"/>
 			<xs:enumeration value="VtlMappingScheme"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -4194,6 +4197,7 @@
 		<xs:restriction base="MaintainableTypeCodelistType">
 			<xs:enumeration value="Codelist"/>
 			<xs:enumeration value="Hierarchy"/>
+			<xs:enumeration value="ValueList"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -4420,12 +4424,6 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="AttachmentConstraint" type="EmptyType">
-		<xs:annotation>
-			<xs:documentation>AttachmentConstraint is an empty element that denotes an attachment constraint object.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-
 	<xs:element name="Attribute" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>Attribute is an empty element that denotes an attribute object.</xs:documentation>
@@ -4516,18 +4514,6 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="ConstraintTarget" type="EmptyType">
-		<xs:annotation>
-			<xs:documentation>ConstraintTarget is an empty element that denotes a constraint target object.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	
-	<xs:element name="ContentConstraint" type="EmptyType">
-		<xs:annotation>
-			<xs:documentation>ContentConstraint is an empty element that denotes a content constraint object.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-
 	<xs:element name="CustomType" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>CustomType is an empty element that denotes a custom type object.</xs:documentation>
@@ -4543,6 +4529,12 @@
 	<xs:element name="Dataflow" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>Dataflow is an empty element that denotes a data flow object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
+	<xs:element name="DataConstraint" type="EmptyType">
+		<xs:annotation>
+			<xs:documentation>DataConstraint is an empty element that denotes a data constraint object.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 
@@ -4671,6 +4663,13 @@
 			<xs:documentation>MetadataAttribute is an empty element that denotes a metadata attribute object.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
+
+	<xs:element name="MetadataConstraint" type="EmptyType">
+		<xs:annotation>
+			<xs:documentation>MetadataConstraint is an empty element that denotes a metadata constraint object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
 
 	<xs:element name="MetadataProvisionAgreement" type="EmptyType">
 		<xs:annotation>
@@ -4852,6 +4851,12 @@
 		</xs:annotation>
 	</xs:element>
 
+	<xs:element name="ValueList" type="EmptyType">
+		<xs:annotation>
+			<xs:documentation>ValueList is an empty element that denotes a value list object.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+
 	<xs:element name="VtlMapping" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>VtlMapping is an empty element that denotes a VTL Mapping object.</xs:documentation>
@@ -4872,7 +4877,6 @@
 			<xs:element ref="Any" minOccurs="0"/>
 			<xs:element ref="Agency" minOccurs="0"/>
 			<xs:element ref="AgencyScheme" minOccurs="0"/>
-			<xs:element ref="AttachmentConstraint" minOccurs="0"/>
 			<xs:element ref="Attribute" minOccurs="0"/>
 			<xs:element ref="AttributeDescriptor" minOccurs="0"/>
 			<xs:element ref="Categorisation" minOccurs="0"/>
@@ -4888,10 +4892,10 @@
 			<xs:element ref="ConceptMap" minOccurs="0"/>
 			<xs:element ref="ConceptScheme" minOccurs="0"/>
 			<xs:element ref="ConceptSchemeMap" minOccurs="0"/>
-			<xs:element ref="ContentConstraint" minOccurs="0"/>
 			<xs:element ref="CustomType" minOccurs="0"/>
 			<xs:element ref="CustomTypeScheme" minOccurs="0"/>
 			<xs:element ref="Dataflow" minOccurs="0"/>
+			<xs:element ref="DataConstraint" minOccurs="0"/>
 			<xs:element ref="DataConsumer" minOccurs="0"/>
 			<xs:element ref="DataConsumerScheme" minOccurs="0"/>
 			<xs:element ref="DataProvider" minOccurs="0"/>
@@ -4913,6 +4917,7 @@
 			<xs:element ref="MeasureDimension" minOccurs="0"/>
 			<xs:element ref="Metadataflow" minOccurs="0"/>
 			<xs:element ref="MetadataAttribute" minOccurs="0"/>
+			<xs:element ref="MetadataConstraint" minOccurs="0"/>
 			<xs:element ref="MetadataProvisionAgreement" minOccurs="0"/>
 			<xs:element ref="MetadataSet" minOccurs="0"/>
 			<xs:element ref="MetadataStructure" minOccurs="0"/>
@@ -4943,6 +4948,7 @@
 			<xs:element ref="Transition" minOccurs="0"/>
 			<xs:element ref="UserDefinedOperator" minOccurs="0"/>
 			<xs:element ref="UserDefinedOperatorScheme" minOccurs="0"/>
+			<xs:element ref="ValueList" minOccurs="0"/>
 			<xs:element ref="VtlMapping" minOccurs="0"/>
 			<xs:element ref="VtlMappingScheme" minOccurs="0"/>
 		</xs:all>
@@ -4956,19 +4962,19 @@
 			<xs:restriction base="ObjectTypeListType">
 				<xs:all>
 					<xs:element ref="AgencyScheme" minOccurs="0"/>
-					<xs:element ref="AttachmentConstraint" minOccurs="0"/>
 					<xs:element ref="Categorisation" minOccurs="0"/>
 					<xs:element ref="CategoryScheme" minOccurs="0"/>
 					<xs:element ref="Codelist" minOccurs="0"/>
 					<xs:element ref="ConceptScheme" minOccurs="0"/>
-					<xs:element ref="ContentConstraint" minOccurs="0"/>
 					<xs:element ref="Dataflow" minOccurs="0"/>
+					<xs:element ref="DataConstraint" minOccurs="0"/>
 					<xs:element ref="DataConsumerScheme" minOccurs="0"/>
 					<xs:element ref="DataProviderScheme" minOccurs="0"/>
 					<xs:element ref="DataStructure" minOccurs="0"/>
 					<xs:element ref="Hierarchy" minOccurs="0"/>
 					<xs:element ref="HierarchyAssociation" minOccurs="0"/>
 					<xs:element ref="Metadataflow" minOccurs="0"/>
+					<xs:element ref="MetadataConstraint" minOccurs="0"/>
 					<xs:element ref="MetadataProvisionAgreement" minOccurs="0"/>
 					<xs:element ref="MetadataStructure" minOccurs="0"/>
 					<xs:element ref="NamePersonalisationScheme" minOccurs="0"/>
@@ -4980,6 +4986,7 @@
 					<xs:element ref="StructureSet" minOccurs="0"/>
 					<xs:element ref="TransformationScheme" minOccurs="0"/>
 					<xs:element ref="UserDefinedOperatorScheme" minOccurs="0"/>
+					<xs:element ref="ValueList" minOccurs="0"/>
 					<xs:element ref="VtlMappingScheme" minOccurs="0"/>
 				</xs:all>
 			</xs:restriction>

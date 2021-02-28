@@ -130,6 +130,12 @@
 					<xs:field xpath="@agencyID"/>
 					<xs:field xpath="@version"/>
 				</xs:unique>
+				<xs:unique name="UniqueValueList">
+					<xs:selector xpath="structure:ValueList"/>
+					<xs:field xpath="@id"/>
+					<xs:field xpath="@agencyID"/>
+					<xs:field xpath="@version"/>
+				</xs:unique>
 			</xs:element>
 			<xs:element name="Hierarchies" type="HierarchiesType" minOccurs="0">
 				<xs:annotation>
@@ -453,7 +459,7 @@
 		<xs:choice maxOccurs="unbounded">
 			<xs:element name="Codelist" type="CodelistType">
 				<xs:annotation>
-					<xs:documentation>Codelist provides the details of a code list, which is defined as a list from which some statistical concepts (coded concepts) take their values.</xs:documentation>
+					<xs:documentation>Codelist provides the details of a codelist, which is defined as a list from which some statistical concepts (coded concepts) take their values.</xs:documentation>
 				</xs:annotation>
 				<xs:unique name="Codelist_UniqueCode">
 					<xs:selector xpath="structure:Code"/>
@@ -477,6 +483,11 @@
 					<xs:selector xpath="structure:GeoGridCode"/>
 					<xs:field xpath="@id"/>
 				</xs:unique>
+			</xs:element>
+			<xs:element name="ValueList" type="ValueListType">
+				<xs:annotation>
+					<xs:documentation>ValueList provides the details of a value list, which is a closed set of values that can occur for a dimension, measure, or attribute. This may be a simple list of values, or a list of values with names and descriptions (similar to a codelist).</xs:documentation>
+				</xs:annotation>
 			</xs:element>
 		</xs:choice>
 	</xs:complexType>
