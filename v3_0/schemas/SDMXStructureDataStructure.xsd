@@ -167,20 +167,10 @@
 			<xs:documentation>AttributeRelationshipType defines the structure for stating the relationship between an attribute and other data structure definition components.</xs:documentation>
 		</xs:annotation>
 		<xs:choice>
-			<xs:element name="None" type="common:EmptyType">
-				<xs:annotation>
-					<xs:documentation>This means that value of the attribute will not vary with any of the other key family components. This will always be treated as a data set level attribute.</xs:documentation>
-				</xs:annotation>
-			</xs:element>
 			<xs:sequence>
 				<xs:element name="Dimension" type="common:OptionalLocalDimensionReferenceType" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation>This is used to reference dimensions in the data structure definition on which the value of this attribute depends. An attribute using this relationship can be either a group, series (or section), or observation level attribute. The attachment level of the attribute will be determined by the data format and which dimensions are referenced.</xs:documentation>
-					</xs:annotation>
-				</xs:element>
-				<xs:element name="AttachmentGroup" type="common:LocalGroupKeyDescriptorReferenceType" minOccurs="0" maxOccurs="unbounded">
-					<xs:annotation>
-						<xs:documentation>This is used to specify that the attribute should always be attached to the groups referenced here. Note that if one of the referenced dimensions is the time dimension, the groups referenced here will be ignored.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
 			</xs:sequence>

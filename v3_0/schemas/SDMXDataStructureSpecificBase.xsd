@@ -8,6 +8,7 @@
 		<xs:documentation>The core base structure specific data module contains the descriptions of base structure specific data set format. The data set defined here describes the structure of the data set in all structure specific data messages. Any structure specific data messages must derive the data set from this format. The entire structure declared for the is data set is abstract, meaning that instances will have to be based on types derived from these structures in schemas created based on the details data structure definition.</xs:documentation>
 	</xs:annotation>
 
+	<!-- TODO Combing structure of Atts and Group -->
 	<xs:complexType name="DataSetType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>
@@ -26,33 +27,28 @@
 							<xs:documentation>DataProvider contains a reference to the provider for the data set.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="Comp" type="CompType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Comp contains the details of data set level attributes that cannot be expressed as XML attributes.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:element name="Group" type="GroupType" form="unqualified" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Group contains a references to a defined group in the data structure definition along with its key (if necessary) and values for the attributes which are associated with the group. An attribute is associated to a group by either an explicit group relationship or by a group attachment when the attribute has a relationship with a dimension which is a member of this group.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-					<xs:choice minOccurs="0">
-						<xs:element name="Series" type="SeriesType" form="unqualified" maxOccurs="unbounded">
+					<xs:choice minOccurs="0" maxOccurs="unbounded">
+						<xs:element name="Atts" type="AttsType" form="unqualified">
+							<xs:annotation>
+								<xs:documentation>Atts contains a set of data attribute values reported agains a partial set of dimension values.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Group" type="GroupType" form="unqualified">
+							<xs:annotation>
+								<xs:documentation>Group contains a references to a defined group in the data structure definition along with its key (if necessary) and values for the attributes which are associated with the group. An attribute is associated to a group by either an explicit group relationship or by a group attachment when the attribute has a relationship with a dimension which is a member of this group.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Series" type="SeriesType" form="unqualified">
 							<xs:annotation>
 								<xs:documentation>Series contains a collection of observations that share a common key (set of dimension values). The key of a series is every dimension defined in the data structure definition, save the dimension at the observation level. In addition to the key and observations, the series contains values for attributes which have a relationship with any dimension that is part of the series key, so long as the attribute does not specify an attachment group or also has a relationship with the dimension declared to be at the observation level.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="Obs" type="ObsType" form="unqualified" maxOccurs="unbounded">
+						<xs:element name="Obs" type="ObsType" form="unqualified">
 							<xs:annotation>
 								<xs:documentation>Obs is an un-grouped observation. This observation has a key which is a set of values for all dimensions declared in the data structure definition. In addition to the key, the value of the observation can be provided along with values for all attributes which have an association with the primary measure or any dimension (so long as it does not specify a group attachment).</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 					</xs:choice>
-					<xs:element name="Atts" type="AttsType" minOccurs="0" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Atts contains a set of data attribute values reported agains a partial set of dimension values.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
 				</xs:sequence>
 				<xs:attributeGroup ref="SetAttributeGroup"/>
 				<xs:attribute name="REPORTING_YEAR_START_DAY" type="xs:gMonthDay" use="optional">
@@ -188,8 +184,6 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<!-- TODO should repeated simple values (e.g. number or dates use XML attributes with list values?)-->
-	<!-- TODO what are the rules for generating derivations of AttsType (should it be left as any dimension and any attributes?) -->
 	<xs:complexType name="AttsType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>
