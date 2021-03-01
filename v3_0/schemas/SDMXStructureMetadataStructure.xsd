@@ -227,6 +227,8 @@
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
+				<xs:attribute name="minOccurs" type="xs:nonNegativeInteger" default="1"/>
+				<xs:attribute name="maxOccurs" type="common:OccurenceType" default="1"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>

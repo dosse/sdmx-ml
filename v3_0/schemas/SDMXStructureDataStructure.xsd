@@ -153,11 +153,6 @@
 						<xs:documentation>The assignmentStatus attribute indicates whether a value must be provided for the attribute when sending documentation along with the data.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maxOccurs" type="common:OccurenceType" default="1">
-					<xs:annotation>
-						<xs:documentation>The maxOccurs attribute indicates the maximum number of times this metadata attribute can occur within its parent object.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -220,7 +215,6 @@
 					<xs:element name="AttributeRelationship" type="AttributeRelationshipType"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="common:NCNameIDType" use="optional" fixed="REPORTING_YEAR_START_DAY"/>
-				<xs:attribute name="maxOccurs" type="common:OccurenceType" fixed="1"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -234,6 +228,7 @@
 				<xs:sequence>
 					<xs:element name="TextFormat" type="ReportingYearStartDayTextFormatType"/>
 				</xs:sequence>
+				<xs:attribute name="maxOccurs" type="common:OccurenceType" fixed="1"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -509,11 +504,6 @@
 						<xs:documentation>Indicates whether the measure is mandatory or conditional.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="maxOccurs" type="common:OccurenceType" default="1">
-					<xs:annotation>
-						<xs:documentation>The maxOccurs attribute indicates the maximum number of times this measure can occur within an observation.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -531,6 +521,7 @@
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
+				<xs:attribute name="minOccurs" type="xs:nonNegativeInteger" use="prohibited"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -548,6 +539,7 @@
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
+				<xs:attribute name="maxOccurs" type="common:OccurenceType" use="optional" default="1"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -565,6 +557,7 @@
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
+				<xs:attribute name="maxOccurs" type="common:OccurenceType" use="optional" default="1"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -582,6 +575,7 @@
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
+				<xs:attribute name="maxOccurs" type="common:OccurenceType" use="prohibited"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>

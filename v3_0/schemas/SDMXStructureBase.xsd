@@ -223,6 +223,16 @@
 				</xs:element>
 			</xs:sequence>
 		</xs:choice>
+		<xs:attribute name="minOccurs" type="xs:nonNegativeInteger" use="optional" default="1">
+			<xs:annotation>
+				<xs:documentation>The minOccurs attribute indicates the minimum number of value that must be reported for the component.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="maxOccurs" type="common:OccurenceType" use="optional">
+			<xs:annotation>
+				<xs:documentation>The maxOccurs attribute indicates the maximum number of values that can be reported for the component.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
 	</xs:complexType>
 	
 	<xs:complexType name="TextFormatType">
