@@ -72,9 +72,9 @@
 		</xs:simpleContent>
 	</xs:complexType>
 
-	<xs:complexType name="ObservationalTimeValueType">
+	<xs:complexType name="ObservationalTimePeriodValueType">
 		<xs:annotation>
-			<xs:documentation>ObservationTimeValueType is a refinement of SimpleValueType limiting the content to be an observational time period.</xs:documentation>
+			<xs:documentation>ObservationalTimePeriodValueType is a refinement of SimpleValueType limiting the content to be an observational time period.</xs:documentation>
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:restriction base="ValueType">
@@ -98,9 +98,9 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="StructureTextValueType">
+	<xs:complexType name="StructuredTextValueType">
 		<xs:annotation>
-			<xs:documentation>StructureTextValueType is a restriction of ValueType that allows mutliple StructuredText (XHTML mixed content) elements to expressed a text value in multiple languages. The content of this should be restricted in its use to only allow a langue code (xml:lang) to be used once within an element of this type.</xs:documentation>
+			<xs:documentation>StructuredTextValueType is a restriction of ValueType that allows mutliple StructuredText (XHTML mixed content) elements to expressed a text value in multiple languages. The content of this should be restricted in its use to only allow a langue code (xml:lang) to be used once within an element of this type.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="ValueType">
@@ -110,6 +110,7 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
+
 	<xs:complexType name="TextType">
 		<xs:annotation>
 			<xs:documentation>TextType provides for a set of language-specific alternates to be provided for any human-readable constructs in the instance.</xs:documentation>
