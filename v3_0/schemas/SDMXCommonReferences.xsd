@@ -408,6 +408,22 @@
 		</xs:complexContent>
 	</xs:complexType>
 
+	<xs:complexType name="EnumerationRefType">
+		<xs:annotation>
+			<xs:documentation>EnumerationRefType is an abstract base type for referencing an item scheme or enumeration.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="MaintainableRefBaseType">
+				<xs:attribute name="agencyID" type="NestedNCNameIDType" use="required"/>
+				<xs:attribute name="id" type="IDType" use="required"/>
+				<xs:attribute name="version" type="ExplicitVersionType" use="optional" default="1.0"/>
+				<xs:attribute name="local" type="xs:boolean" use="optional" fixed="false"/>
+				<xs:attribute name="class" type="EnumerationTypeCodelistType" use="optional"/>
+				<xs:attribute name="package" type="EnumerationPackageTypeCodelistType" use="optional"/>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+
 	<xs:complexType name="StructureOrUsageRefBaseType" abstract="true">
 		<xs:annotation>
 			<xs:documentation>StructureOrUsageRefBaseType is an abstract base type for referencing a structure or structure usage.</xs:documentation>
@@ -901,6 +917,23 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
+
+	<xs:complexType name="EnumerationReferenceType">
+		<xs:annotation>
+			<xs:documentation>EnumerationReferenceType is a specific type of MaintainableReference that is used for referencing item schemes or a value list. It consists of a URN and/or a complete set of reference fields; agency, id, and version.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:restriction base="MaintainableReferenceBaseType">
+				<xs:choice>
+					<xs:sequence>
+						<xs:element name="Ref" type="EnumerationRefType" form="unqualified"/>
+						<xs:element name="URN" type="xs:anyURI" form="unqualified" minOccurs="0"/>
+					</xs:sequence>
+					<xs:element name="URN" type="xs:anyURI" form="unqualified"/>
+				</xs:choice>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
 	
 	<xs:complexType name="ChildObjectReferenceType" abstract="true">
 		<xs:annotation>
@@ -1211,7 +1244,7 @@
 				<xs:documentation>CodelistReferenceType is a type for referencing a codelist object. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="ItemSchemeReferenceBaseType">
+			<xs:restriction base="EnumerationReferenceType">
 				<xs:choice>
 					<xs:sequence>
 						<xs:element name="Ref" type="CodelistRefType" form="unqualified"/>
@@ -1228,9 +1261,9 @@
 			<xs:documentation>CodelistRefType provides a reference to a codelist via a complete set of reference fields.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:restriction base="ItemSchemeRefBaseType">
-				<xs:attribute name="class" type="ItemSchemeTypeCodelistType" use="optional" fixed="Codelist"/>
-				<xs:attribute name="package" type="ItemSchemePackageTypeCodelistType" use="optional" fixed="codelist"/>
+			<xs:restriction base="EnumerationRefType">
+				<xs:attribute name="class" type="CodelistTypeCodelistType" use="optional"/>
+				<xs:attribute name="package" type="EnumerationPackageTypeCodelistType" use="optional" fixed="codelist"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -4009,6 +4042,18 @@
 		</xs:restriction>
 	</xs:simpleType>
 
+	<xs:simpleType name="EnumerationPackageTypeCodelistType">
+		<xs:annotation>
+			<xs:documentation>ItemSchemePackageTypeCodelistType provides an enumeration of all SDMX packages which contain item schemes.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="PackageTypeCodelistType">
+			<xs:enumeration value="base"/>
+			<xs:enumeration value="codelist"/>
+			<xs:enumeration value="categoryscheme"/>
+			<xs:enumeration value="conceptscheme"/>
+		</xs:restriction>
+	</xs:simpleType>
+
 	<xs:simpleType name="StructurePackageTypeCodelistType">
 		<xs:annotation>
 			<xs:documentation>StructurePackageTypeCodelistType provides an enumeration of all SDMX packages which contain structure and structure usages.</xs:documentation>
@@ -4189,17 +4234,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<xs:simpleType name="CodelistTypeCodelistType">
-		<xs:annotation>
-			<xs:documentation>CodelistTypeCodelistType provides an enumeration of all codelist objects.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="MaintainableTypeCodelistType">
-			<xs:enumeration value="Codelist"/>
-			<xs:enumeration value="Hierarchy"/>
-			<xs:enumeration value="ValueList"/>
-		</xs:restriction>
-	</xs:simpleType>
-
 	<xs:simpleType name="CodeTypeCodelistType">
 		<xs:annotation>
 			<xs:documentation>CodeTypeCodelistType provides an enumeration of all code objects.</xs:documentation>
@@ -4240,7 +4274,36 @@
 			<xs:enumeration value="UserDefinedOperatorScheme"/>
 			<xs:enumeration value="VtlMappingScheme"/>
 		</xs:restriction>
-	</xs:simpleType>	
+	</xs:simpleType>
+
+	<xs:simpleType name="EnumerationTypeCodelistType">
+		<xs:annotation>
+			<xs:documentation>EnumerationTypeCodelistType provides an enumeration of all enumeration objects (item schemes and value lists).</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="MaintainableTypeCodelistType">
+			<xs:enumeration value="AgencyScheme"/>
+			<xs:enumeration value="CategoryScheme"/>
+			<xs:enumeration value="Codelist"/>
+			<xs:enumeration value="ConceptScheme"/>
+			<xs:enumeration value="DataConsumerScheme"/>
+			<xs:enumeration value="DataProviderScheme"/>
+			<xs:enumeration value="Hierarchy"/>
+			<xs:enumeration value="OrganisationUnitScheme"/>
+			<xs:enumeration value="ReportingTaxonomy"/>
+			<xs:enumeration value="ValueList"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="CodelistTypeCodelistType">
+		<xs:annotation>
+			<xs:documentation>CodelistTypeCodelistType provides restricts the EnumerationTypeCodelistType to remove value lists.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="EnumerationTypeCodelistType">
+			<xs:enumeration value="Codelist"/>
+			<xs:enumeration value="Hierarchy"/>
+			<xs:enumeration value="ValueList"/>
+		</xs:restriction>
+	</xs:simpleType>
 
 	<xs:simpleType name="DefinitionSchemeTypeCodelistType">
 		<xs:annotation>

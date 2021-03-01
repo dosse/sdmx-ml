@@ -211,7 +211,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:sequence>
-				<xs:element name="Enumeration" type="common:ItemSchemeReferenceBaseType">
+				<xs:element name="Enumeration" type="common:EnumerationReferenceType">
 					<xs:annotation>
 						<xs:documentation>Enumeration references an item scheme that enumerates the allowable values for this representation.</xs:documentation>
 					</xs:annotation>

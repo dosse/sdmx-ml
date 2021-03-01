@@ -527,7 +527,7 @@
 				<xs:choice>
 					<xs:element name="TextFormat" type="SimpleComponentTextFormatType"/>
 					<xs:sequence>
-						<xs:element name="Enumeration" type="common:ItemSchemeReferenceBaseType"/>
+						<xs:element name="Enumeration" type="common:EnumerationReferenceType"/>
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
@@ -544,7 +544,7 @@
 				<xs:choice>
 					<xs:element name="TextFormat" type="BasicComponentTextFormatType"/>
 					<xs:sequence>
-						<xs:element name="Enumeration" type="common:ItemSchemeReferenceBaseType"/>
+						<xs:element name="Enumeration" type="common:EnumerationReferenceType"/>
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
@@ -561,7 +561,7 @@
 				<xs:choice>
 					<xs:element name="TextFormat" type="BasicComponentTextFormatType"/>
 					<xs:sequence>
-						<xs:element name="Enumeration" type="common:ItemSchemeReferenceBaseType"/>
+						<xs:element name="Enumeration" type="common:EnumerationReferenceType"/>
 						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>

@@ -203,7 +203,7 @@
 				<xs:choice>
 					<xs:element name="TextFormat" type="IdentifiableObjectTextFormatType"/>
 					<xs:sequence>
-						<xs:element name="Enumeration" type="common:ItemSchemeReferenceType">
+						<xs:element name="Enumeration" type="common:EnumerationReferenceType">
 							<xs:annotation>
 								<xs:documentation>Enumeration is only permissible if the object type of the identifiable object target is an item in an item scheme. This enumeration is meant to limit the referencable objects to the items defined in the referenced item scheme.</xs:documentation>
 							</xs:annotation>
