@@ -58,7 +58,7 @@
 					<xs:element ref="DimensionList"/>
 					<xs:element ref="Group" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="AttributeList" minOccurs="0"/>
-					<xs:element ref="MeasureList"/>
+					<xs:element ref="MeasureList" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
