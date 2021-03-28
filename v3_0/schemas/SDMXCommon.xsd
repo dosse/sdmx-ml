@@ -381,16 +381,10 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<!-- TODO is the structureRef still necessary after data/metadata message changes? -->
 	<xs:attributeGroup name="SetAttributeGroup">
 		<xs:annotation>
 			<xs:documentation>The SetAttributeGroup defines a common set of attributes for use in data and reference metadata sets.</xs:documentation>
 		</xs:annotation>
-		<xs:attribute name="structureRef" type="xs:IDREF" use="required">
-			<xs:annotation>
-				<xs:documentation>The structureRef contains a reference to a structural specification in the header of a data or reference metadata message. The structural specification details which structure the data or reference metadata conforms to, as well as providing additional information such as how the data is structure (e.g. which dimension occurs at the observation level for a data set).</xs:documentation>
-			</xs:annotation>
-		</xs:attribute>
 		<xs:attribute name="action" type="ActionType" use="optional">
 			<xs:annotation>
 				<xs:documentation>The action attribute indicates whether the file is appending, replacing, or deleting.</xs:documentation>
