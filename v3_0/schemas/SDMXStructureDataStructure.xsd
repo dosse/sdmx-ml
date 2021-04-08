@@ -147,12 +147,7 @@
 							<xs:documentation>MeasureRelationship identifies the measures that the attribute applies to. If this is not used, the attribute is assumed to apply to all measures.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
- 				</xs:sequence>
-				<xs:attribute name="assignmentStatus" type="AttributeUsageStatusType" use="required">
-					<xs:annotation>
-						<xs:documentation>The assignmentStatus attribute indicates whether a value must be provided for the attribute when sending documentation along with the data.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
+				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -506,11 +501,6 @@
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
-				<xs:attribute name="usageStatus" type="UsageStatusType" use="optional" default="Conditional">
-					<xs:annotation>
-						<xs:documentation>Indicates whether the measure is mandatory or conditional.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
