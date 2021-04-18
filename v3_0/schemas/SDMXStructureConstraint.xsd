@@ -92,9 +92,9 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="MeatadataConstraintBaseType" abstract="true">
+	<xs:complexType name="MetadataConstraintBaseType" abstract="true">
 		<xs:annotation>
-			<xs:documentation>MeatadataConstraintBaseType is an abstract base refinement of ConstraintType. The constraint attachment is restricted to constrainable artefacts related to metadata, and the only possible role is "Allowed".</xs:documentation>
+			<xs:documentation>MetadataConstraintBaseType is an abstract base refinement of ConstraintType. The constraint attachment is restricted to constrainable artefacts related to metadata, and the only possible role is "Allowed".</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="ConstraintType">
@@ -103,7 +103,7 @@
 					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element ref="common:Name" maxOccurs="unbounded"/>
 					<xs:element ref="common:Description" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="ConstraintAttachment" type="DataConstraintAttachmentType" minOccurs="0"/>
+					<xs:element name="ConstraintAttachment" type="MetadataConstraintAttachmentType" minOccurs="0"/>
 					<xs:element name="ReleaseCalendar" type="ReleaseCalendarType" minOccurs="0"/>
 				</xs:sequence>
 				<xs:attribute name="role" type="ConstraintRoleType" use="required" fixed="Allowed"/>
@@ -116,7 +116,7 @@
 			<xs:documentation>MetadataConstraintType defines the structure of a metadata constraint. A metadata constraint can specify allowed attribute values for metadata described by the constrained artefact.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
-			<xs:extension base="MeatadataConstraintBaseType">
+			<xs:extension base="MetadataConstraintBaseType">
 				<xs:sequence>
 					<xs:element name="MetadataTargetRegion" type="MetadataTargetRegionType" minOccurs="0" maxOccurs="2">
 						<xs:annotation>
