@@ -391,7 +391,7 @@
 				<xs:attribute name="maxValue" type="xs:integer" use="optional"/>
 				<xs:attribute name="decimals" type="xs:positiveInteger" use="prohibited"/>
 				<xs:attribute name="pattern" type="xs:string" use="optional"/>
-				<xs:attribute name="sentinel" type="xs:boolean" use="prohibited"/>
+				<xs:attribute name="sentinelValues" type="xs:boolean" use="prohibited"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -457,8 +457,7 @@
 				<xs:attribute name="maxValue" type="xs:decimal" use="prohibited"/>
 				<xs:attribute name="decimals" type="xs:positiveInteger" use="prohibited"/>
 				<xs:attribute name="pattern" type="xs:string" use="prohibited"/>
-				<xs:attribute name="isMultiLingual" type="xs:boolean" use="prohibited"/>
-				<xs:attribute name="sentinel" type="xs:boolean" use="prohibited"/>
+				<xs:attribute name="sentinelValues" type="xs:boolean" use="prohibited"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -486,7 +485,7 @@
 				<xs:attribute name="maxValue" type="xs:decimal" use="prohibited"/>
 				<xs:attribute name="decimals" type="xs:positiveInteger" use="prohibited"/>
 				<xs:attribute name="pattern" type="xs:string" use="prohibited"/>
-				<xs:attribute name="isMultiLingual" type="xs:boolean" use="prohibited"/>
+				<xs:attribute name="sentinelValues" type="xs:boolean" use="optional"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
