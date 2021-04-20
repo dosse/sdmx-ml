@@ -216,7 +216,7 @@
 						<xs:documentation>Enumeration references an item scheme that enumerates the allowable values for this representation.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0">
+				<xs:element name="EnumerationFormat" type="CodedTextFormatType" minOccurs="0">
 					<xs:annotation>
 						<xs:documentation>EnumerationFormat describes the facets of the item scheme enumeration. This is for the most part, informational.</xs:documentation>
 					</xs:annotation>
@@ -371,9 +371,9 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="CodededTextFormatType">
+	<xs:complexType name="CodedTextFormatType">
 		<xs:annotation>
-			<xs:documentation>CodededTextFormatType is a restricted version of the SimpleComponentTextFormatType that only allows factets and text types applicable to codes. Although the time facets permit any value, an actual code identifier does not support the necessary characters for time. Therefore these facets should not contain time in their values.</xs:documentation>
+			<xs:documentation>CodedTextFormatType is a restricted version of the SimpleComponentTextFormatType that only allows factets and text types applicable to codes. Although the time facets permit any value, an actual code identifier does not support the necessary characters for time. Therefore these facets should not contain time in their values.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="SimpleComponentTextFormatType">
@@ -391,7 +391,6 @@
 				<xs:attribute name="maxValue" type="xs:integer" use="optional"/>
 				<xs:attribute name="decimals" type="xs:positiveInteger" use="prohibited"/>
 				<xs:attribute name="pattern" type="xs:string" use="optional"/>
-				<xs:attribute name="isMultiLingual" type="xs:boolean" use="prohibited"/>
 				<xs:attribute name="sentinel" type="xs:boolean" use="prohibited"/>
 			</xs:restriction>
 		</xs:complexContent>
