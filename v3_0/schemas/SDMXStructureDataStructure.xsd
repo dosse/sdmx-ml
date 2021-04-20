@@ -583,7 +583,7 @@
 					<xs:element name="TextFormat" type="SimpleComponentTextFormatType"/>
 					<xs:sequence>
 						<xs:element name="Enumeration" type="common:EnumerationReferenceType"/>
-						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
+						<xs:element name="EnumerationFormat" type="CodedTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
 				<xs:attribute name="minOccurs" type="xs:nonNegativeInteger" use="prohibited"/>
@@ -601,7 +601,7 @@
 					<xs:element name="TextFormat" type="BasicComponentTextFormatType"/>
 					<xs:sequence>
 						<xs:element name="Enumeration" type="common:EnumerationReferenceType"/>
-						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
+						<xs:element name="EnumerationFormat" type="CodedTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
 				<xs:attribute name="maxOccurs" type="common:OccurenceType" use="optional" default="1"/>
@@ -619,7 +619,7 @@
 					<xs:element name="TextFormat" type="BasicComponentTextFormatType"/>
 					<xs:sequence>
 						<xs:element name="Enumeration" type="common:EnumerationReferenceType"/>
-						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
+						<xs:element name="EnumerationFormat" type="CodedTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
 				<xs:attribute name="maxOccurs" type="common:OccurenceType" use="optional" default="1"/>
@@ -637,7 +637,7 @@
 					<xs:element name="TextFormat" type="SimpleComponentTextFormatType"/>
 					<xs:sequence>
 						<xs:element name="Enumeration" type="common:CodelistReferenceType"/>
-						<xs:element name="EnumerationFormat" type="CodededTextFormatType" minOccurs="0"/>
+						<xs:element name="EnumerationFormat" type="CodedTextFormatType" minOccurs="0"/>
 					</xs:sequence>
 				</xs:choice>
 				<xs:attribute name="maxOccurs" type="common:OccurenceType" use="prohibited"/>
