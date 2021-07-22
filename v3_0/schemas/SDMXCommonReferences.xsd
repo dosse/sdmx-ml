@@ -21,7 +21,7 @@
 
 	<xs:simpleType name="WildcardNestedIDType">
 		<xs:annotation>
-			<xs:documentation>WildcardNestedIDTypeType combines the NestedIDType and WildcardType to allow a reference to either a specific nested identifier, or to wildcard the identifier in the reference by specifying the '*' value.</xs:documentation>
+			<xs:documentation>WildcardNestedIDType combines the NestedIDType and WildcardType to allow a reference to either a specific nested identifier, or to wildcard the identifier in the reference by specifying the '*' value.</xs:documentation>
 		</xs:annotation>
 		<xs:union memberTypes="NestedIDType WildcardType"/>
 	</xs:simpleType>
