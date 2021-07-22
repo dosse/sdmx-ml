@@ -69,7 +69,7 @@
 
 	<xs:complexType name="UnnestedItemType" abstract="true">
 		<xs:annotation>
-			<xs:documentation>UnnestedItemType is an abstract base type for all items with in an item scheme that do not contain nexted items.</xs:documentation>
+			<xs:documentation>UnnestedItemType is an abstract base type for all items with in an item scheme that do not contain nested items.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="ItemType">
