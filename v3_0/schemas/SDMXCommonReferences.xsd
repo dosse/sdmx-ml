@@ -2616,37 +2616,6 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="MeasureDimensionReferenceType">
-		<xs:annotation>
-			<xs:documentation>MeasureDimensionReferenceType is a type for referencing a measure dimension object. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="ComponentReferenceType">
-				<xs:choice>
-					<xs:sequence>
-						<xs:element name="Ref" type="MeasureDimensionRefType" form="unqualified"/>
-						<xs:element name="URN" type="xs:anyURI" form="unqualified" minOccurs="0"/>
-					</xs:sequence>
-					<xs:element name="URN" type="xs:anyURI" form="unqualified"/>
-				</xs:choice>
-			</xs:restriction>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="MeasureDimensionRefType">
-		<xs:annotation>
-			<xs:documentation>MeasureDimensionRefType contains a reference to the measure dimension within a data structure definition. Note that since there is only one key descriptor, the container reference fields are prohibited.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="ComponentRefBaseType">
-				<xs:attribute name="containerID" type="IDType" use="prohibited"/>
-				<xs:attribute name="id" type="IDType" use="required"/>
-				<xs:attribute name="class" type="DimensionTypeCodelistType" use="optional" fixed="MeasureDimension"/>
-				<xs:attribute name="package" type="StructurePackageTypeCodelistType" use="optional" fixed="datastructure"/>
-			</xs:restriction>
-		</xs:complexContent>
-	</xs:complexType>
-
 	<xs:complexType name="TimeDimensionReferenceType">
 		<xs:annotation>
 			<xs:documentation>TimeDimensionReferenceType is a type for referencing a time dimension object. It consists of a URN and/or a complete set of reference fields.</xs:documentation>
@@ -4196,7 +4165,6 @@
 			<xs:enumeration value="ItemSchemeMap"/>
 			<xs:enumeration value="Level"/>
 			<xs:enumeration value="MeasureDescriptor"/>
-			<xs:enumeration value="MeasureDimension"/>
 			<xs:enumeration value="Metadataflow"/>
 			<xs:enumeration value="MetadataAttribute"/>
 			<xs:enumeration value="MetadataConstraint"/>
@@ -4514,7 +4482,6 @@
 		<xs:restriction base="ObjectTypeCodelistType">
 			<xs:enumeration value="Attribute"/>
 			<xs:enumeration value="Dimension"/>
-			<xs:enumeration value="MeasureDimension"/>
 			<xs:enumeration value="MetadataAttribute"/>
 			<xs:enumeration value="Measure"/>
 			<xs:enumeration value="ReportingYearStartDay"/>
@@ -4529,7 +4496,6 @@
 		<xs:restriction base="ComponentTypeCodelistType">
 			<xs:enumeration value="Attribute"/>
 			<xs:enumeration value="Dimension"/>
-			<xs:enumeration value="MeasureDimension"/>
 			<xs:enumeration value="Measure"/>
 			<xs:enumeration value="ReportingYearStartDay"/>
 			<xs:enumeration value="TimeDimension"/>
@@ -4561,7 +4527,6 @@
 		</xs:annotation>
 		<xs:restriction base="ComponentTypeCodelistType">
 			<xs:enumeration value="Dimension"/>
-			<xs:enumeration value="MeasureDimension"/>
 			<xs:enumeration value="TimeDimension"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -4779,12 +4744,6 @@
 	<xs:element name="MeasureDescriptor" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>MeasureDescriptor is an empty element that denotes a measure descriptor object.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-
-	<xs:element name="MeasureDimension" type="EmptyType">
-		<xs:annotation>
-			<xs:documentation>MeasureDimension is an empty element that denotes a measure dimension object.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 
@@ -5057,7 +5016,6 @@
 			<xs:element ref="IdentifiableObjectTarget" minOccurs="0"/>
 			<xs:element ref="Level" minOccurs="0"/>
 			<xs:element ref="MeasureDescriptor" minOccurs="0"/>
-			<xs:element ref="MeasureDimension" minOccurs="0"/>
 			<xs:element ref="Metadataflow" minOccurs="0"/>
 			<xs:element ref="MetadataAttribute" minOccurs="0"/>
 			<xs:element ref="MetadataConstraint" minOccurs="0"/>
