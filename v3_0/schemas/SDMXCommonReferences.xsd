@@ -110,10 +110,12 @@
 
 	<xs:simpleType name="SemanticVersionReferenceType">
 		<xs:annotation>
-			<xs:documentation>SemanticVersionReferenceType is a simple type for referencing semantic version numbers. It allows for the wildcarding of the major, minor, or patch version parts using "+".</xs:documentation>
+			<xs:documentation>SemanticVersionReferenceType is a simple type for referencing semantic version numbers. It allows for the wildcarding of only one the major, minor, or patch version parts using "+".</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*)\+?)){2}"/>
+			<xs:pattern value="((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*))){2}"/>
+			<xs:pattern value="((0|[1-9]\d*))(\.((0|[1-9]\d*)\+?))(\.((0|[1-9]\d*)))"/>
+			<xs:pattern value="((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*)))(\.((0|[1-9]\d*)\+?))"/>
 		</xs:restriction>
 	</xs:simpleType>
 
