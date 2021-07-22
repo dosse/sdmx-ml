@@ -177,7 +177,7 @@
 		<xs:choice>
 			<xs:element name="None" type="common:EmptyType">
 				<xs:annotation>
-					<xs:documentation>This means that value of the attribute will not vary with any of the other key family components. This will always be treated as a data set level attribute.</xs:documentation>
+					<xs:documentation>This means that value of the attribute will not vary with any of the dimensions. The attribute will always be treated as a data structure level attribute. The level at which the unique attribute value will be presented in data messages depends on the data format.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 			<xs:sequence>
