@@ -4617,24 +4617,12 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="CodeMap" type="EmptyType">
-		<xs:annotation>
-			<xs:documentation>CodeMap is an empty element that denotes a code map object.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-
 	<xs:element name="Codelist" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>Codelist is an empty element that denotes a code list object.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
-	
-	<xs:element name="CodelistMap" type="EmptyType">
-		<xs:annotation>
-			<xs:documentation>CodelistMap is an empty element that denotes a code list map object.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	
+
 	<xs:element name="ComponentMap" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>ComponentMap is an empty element that denotes a component map object.</xs:documentation>
@@ -4767,18 +4755,6 @@
 		</xs:annotation>
 	</xs:element>
 
-	<xs:element name="HybridCodelistMap" type="EmptyType">
-		<xs:annotation>
-			<xs:documentation>HybridCodelistMap is an empty element that denotes a hybrid codelist map object.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-
-	<xs:element name="HybridCodeMap" type="EmptyType">
-		<xs:annotation>
-			<xs:documentation>HybridCodeMap is an empty element that denotes a hybrid code map object.</xs:documentation>
-		</xs:annotation>
-	</xs:element>
-	
 	<xs:element name="IdentifiableObjectTarget" type="EmptyType">
 		<xs:annotation>
 			<xs:documentation>IdentifiableObjectTarget is an empty element that denotes an identifiable object target object.</xs:documentation>
@@ -5046,9 +5022,7 @@
 			<xs:element ref="CategorySchemeMap" minOccurs="0"/>
 			<xs:element ref="CategoryScheme" minOccurs="0"/>
 			<xs:element ref="Code" minOccurs="0"/>
-			<xs:element ref="CodeMap" minOccurs="0"/>
 			<xs:element ref="Codelist" minOccurs="0"/>
-			<xs:element ref="CodelistMap" minOccurs="0"/>
 			<xs:element ref="ComponentMap" minOccurs="0"/>
 			<xs:element ref="Concept" minOccurs="0"/>
 			<xs:element ref="ConceptMap" minOccurs="0"/>
@@ -5071,8 +5045,6 @@
 			<xs:element ref="HierarchicalCode" minOccurs="0"/>
 			<xs:element ref="Hierarchy" minOccurs="0"/>
 			<xs:element ref="HierarchyAssociation" minOccurs="0"/>
-			<xs:element ref="HybridCodelistMap" minOccurs="0"/>
-			<xs:element ref="HybridCodeMap" minOccurs="0"/>
 			<xs:element ref="IdentifiableObjectTarget" minOccurs="0"/>
 			<xs:element ref="Level" minOccurs="0"/>
 			<xs:element ref="MeasureDescriptor" minOccurs="0"/>
