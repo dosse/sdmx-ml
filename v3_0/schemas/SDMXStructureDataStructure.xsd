@@ -311,10 +311,6 @@
 		<xs:annotation>
 			<xs:documentation>DimensionList describes the key descriptor for the data structure definition. It is an ordered set of metadata concepts that, combined, classify a statistical series, such as a time series, and whose values, when combined (the key) in an instance such as a data set, uniquely identify a specific series.</xs:documentation>
 		</xs:annotation>
-		<xs:unique name="SingleMeasureDimension">
-			<xs:selector xpath="structure:MeasureDimension"/>
-			<xs:field xpath="@type"/>
-		</xs:unique>
 	</xs:element>
 
 	<xs:complexType name="DimensionListBaseType" abstract="true">
@@ -384,11 +380,6 @@
 						<xs:documentation>The position attribute specifies the position of the dimension in the data structure definition. It is optional an the position of the dimension in the key descriptor (DimensionList element) always takes precedence over the value supplied here. This is strictly for informational purposes only.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="type" type="common:DimensionTypeType" use="optional">
-					<xs:annotation>
-						<xs:documentation>The type attribute identifies whether then dimension is a measure dimension, the time dimension, or a regular dimension. Although these are all apparent by the element names, this attribute allows for each dimension to be processed independent of its element as well as maintaining the restriction of only one measure and time dimension while still allowing dimension to occur in any order.</xs:documentation>
-					</xs:annotation>
-				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -412,7 +403,6 @@
 					<xs:element name="LocalRepresentation" type="SimpleDataStructureRepresentationType" minOccurs="0"/>
 					<xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
-				<xs:attribute name="type" type="common:DimensionTypeType" use="optional" fixed="Dimension"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -436,7 +426,6 @@
 					<xs:element name="LocalRepresentation" type="TimeDimensionRepresentationType"/>
 				</xs:sequence>
 				<xs:attribute name="id" type="common:NCNameIDType" use="optional" fixed="TIME_PERIOD"/>
-				<xs:attribute name="type" type="common:DimensionTypeType" use="optional" fixed="TimeDimension"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
