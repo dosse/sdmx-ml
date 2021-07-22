@@ -253,7 +253,7 @@
 
 	<xs:complexType name="ReportingYearStartDayTextFormatType">
 		<xs:annotation>
-			<xs:documentation>ReportingYearStartDayTextFormatType is a restricted version of the NonFacetedTextFormatType that fixes the value of the text type to be DayMonth. This type exists solely for the purpose of fixing the representation of the reporting year start day attribute.</xs:documentation>
+			<xs:documentation>ReportingYearStartDayTextFormatType is a restricted version of the NonFacetedTextFormatType that fixes the value of the text type to be MonthDay. This type exists solely for the purpose of fixing the representation of the reporting year start day attribute.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="NonFacetedTextFormatType">
