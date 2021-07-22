@@ -125,7 +125,7 @@
 				</xs:sequence>
 				<xs:attribute name="minOccurs" type="xs:nonNegativeInteger" default="1">
 					<xs:annotation>
-						<xs:documentation>The minOccurs attribute indicates the minimum number of times this metadata attribute can occur within its parent object.</xs:documentation>
+						<xs:documentation>The minOccurs attribute indicates the minimum number of times this metadata attribute must occur within its parent object.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 				<xs:attribute name="maxOccurs" type="common:OccurenceType" default="1">
