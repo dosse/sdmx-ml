@@ -57,7 +57,7 @@
 					<xs:field xpath="@agencyID"/>
 					<xs:field xpath="@version"/>
 				</xs:unique>
-				<xs:unique name="UniqueMetaataProviderScheme">
+				<xs:unique name="UniqueMetadataProviderScheme">
 					<xs:selector xpath="structure:MetadataProviderScheme"/>
 					<xs:field xpath="@id"/>
 					<xs:field xpath="@agencyID"/>
