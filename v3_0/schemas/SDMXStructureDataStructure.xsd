@@ -618,7 +618,7 @@
 
 	<xs:complexType name="SimpleDataStructureRepresentationType">
 		<xs:annotation>
-			<xs:documentation>SimpleDataStructureRepresentationType defines the representation for any non-measure and non-time dimension data structure definition component.</xs:documentation>
+			<xs:documentation>SimpleDataStructureRepresentationType defines the representation for any non-time dimension data structure definition component.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="DataStructureRepresentationType">
