@@ -647,42 +647,4 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:simpleType name="UsageStatusType">
-		<xs:annotation>
-			<xs:documentation>UsageStatusType provides a list of enumerated types for indicating whether reporting a given attribute is mandatory or conditional.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:NMTOKEN">
-			<xs:enumeration value="Mandatory">
-				<xs:annotation>
-					<xs:documentation>Reporting the associated attribute is mandatory - a value must be supplied.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="Conditional">
-				<xs:annotation>
-					<xs:documentation>Reporting the associated attribute is not mandatory - a value may  be supplied, but is not required.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="MeatadataUsageStatusType">
-		<xs:annotation>
-			<xs:documentation>MeatadataUsageStatusType provides an additional enumeration indicating that an attribute is reported as reference metadata.</xs:documentation>
-		</xs:annotation>
-		<xs:restriction base="xs:NMTOKEN">
-			<xs:enumeration value="Metadata">
-				<xs:annotation>
-					<xs:documentation>The associated attribute is reported as reference metadata.</xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-		</xs:restriction>
-	</xs:simpleType>
-
-	<xs:simpleType name="AttributeUsageStatusType">
-		<xs:annotation>
-			<xs:documentation>AttributeUsageStatusType joins the base UsageStatusType with MeatadataUsageStatusType to allow for the usage status of a attribute to be reported as mandatory, conditional, or metadata.</xs:documentation>
-		</xs:annotation>
-		<xs:union memberTypes="UsageStatusType MeatadataUsageStatusType"/>
-	</xs:simpleType>
-
 </xs:schema>
