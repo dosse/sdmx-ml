@@ -166,6 +166,11 @@
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
+				<xs:attribute name="isMandatory" type="xs:boolean" use="optional" default="false">
+					<xs:annotation>
+						<xs:documentation>The isMandatory attribute indicates whether an attribute value must be available for any corresponding existing observation.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -558,6 +563,11 @@
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
+				<xs:attribute name="isMandatory" type="xs:boolean" use="optional" default="false">
+					<xs:annotation>
+						<xs:documentation>The isMandatory attribute indicates whether a measure value must be available for any corresponding existing observation.</xs:documentation>
+					</xs:annotation>
+				</xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
