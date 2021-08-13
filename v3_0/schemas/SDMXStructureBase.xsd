@@ -21,7 +21,7 @@
 				</xs:sequence>
 				<xs:attribute name="isPartial" type="xs:boolean" use="optional" default="false">
 					<xs:annotation>
-						<xs:documentation>The isPartial, if true, indicates that only the relevant portion of the item scheme is being communicated. This is used in cases where a codelist is returned for a key family in the context of a constraint.</xs:documentation>
+						<xs:documentation>The isPartial, if true, indicates that only the relevant portion of the item scheme is being communicated. This is used in cases where a codelist is returned for a data structure in the context of a constraint.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>

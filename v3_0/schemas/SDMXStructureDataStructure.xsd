@@ -506,7 +506,7 @@
 
 	<xs:element name="MeasureList" type="MeasureListType" substitutionGroup="ComponentList">
 		<xs:annotation>
-			<xs:documentation>MeasureList describes the measure descriptor for a key family.</xs:documentation>
+			<xs:documentation>MeasureList describes the measure descriptor for a data structure.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 

@@ -186,7 +186,7 @@
 	
 	<xs:element name="Agency" type="AgencyType" substitutionGroup="Organisation">
 		<xs:annotation>
-			<xs:documentation>Agency is an organisation which maintains structural metadata such as statistical classifications, glossaries, key family structural definitions, and metadata structure definitions..</xs:documentation>
+			<xs:documentation>Agency is an organisation which maintains structural metadata such as classifications, concepts, data structures, and metadata structures.</xs:documentation>
 		</xs:annotation>
 	</xs:element>
 

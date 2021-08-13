@@ -59,7 +59,7 @@
 		</xs:attribute>
 		<xs:attribute name="externalDependencies" type="xs:boolean" use="optional">
 			<xs:annotation>
-				<xs:documentation>The externalDependencies attribute should be set to true if the repository is expected to use external reference URLs in the structural components to retrieve objects on which the referenced object has dependencies. (Thus, if a key family referenced here is being submitted to the repository, and the structure message has URLs which point to the locations of the codelists it uses, then this attribute should be set to true). This should not be provided when this structure is used in a submit structure response.</xs:documentation>
+				<xs:documentation>The externalDependencies attribute should be set to true if the repository is expected to use external reference URLs in the structural components to retrieve objects on which the referenced object has dependencies. (Thus, if a data structure referenced here is being submitted to the repository, and the structure message has URLs which point to the locations of the codelists it uses, then this attribute should be set to true). This should not be provided when this structure is used in a submit structure response.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
