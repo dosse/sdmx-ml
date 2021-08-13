@@ -166,9 +166,9 @@
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
-				<xs:attribute name="isMandatory" type="xs:boolean" use="optional" default="false">
+				<xs:attribute name="usage" type="UsageType" use="optional" default="optional">
 					<xs:annotation>
-						<xs:documentation>The isMandatory attribute indicates whether an attribute value must be available for any corresponding existing observation.</xs:documentation>
+						<xs:documentation>The usage attribute indicates whether an attribute value must be available for any corresponding existing observation.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
@@ -563,9 +563,9 @@
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
-				<xs:attribute name="isMandatory" type="xs:boolean" use="optional" default="false">
+				<xs:attribute name="usage" type="UsageType" use="optional" default="optional">
 					<xs:annotation>
-						<xs:documentation>The isMandatory attribute indicates whether a measure value must be available for any corresponding existing observation.</xs:documentation>
+						<xs:documentation>The usage attribute indicates whether a measure value must be available for any corresponding existing observation.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
@@ -656,5 +656,15 @@
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
+
+	<xs:simpleType name="UsageType">
+		<xs:annotation>
+			<xs:documentation>An enumeration of optional | mandatory to indicate the usage of an attribute or measure.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="mandatory"/>
+			<xs:enumeration value="optional"/>
+		</xs:restriction>
+	</xs:simpleType>
 
 </xs:schema>
