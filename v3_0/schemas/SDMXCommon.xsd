@@ -167,7 +167,13 @@
 			</xs:annotation>
 		</xs:attribute>
 	</xs:complexType>
-	
+
+	<xs:complexType name="EmptyType">
+		<xs:annotation>
+			<xs:documentation>EmptyType is an empty complex type for elements where the presence of the tag indicates all that is necessary.</xs:documentation>
+		</xs:annotation>
+	</xs:complexType>
+
 	<xs:complexType name="CodedStatusMessageType">
 		<xs:annotation>
 			<xs:documentation>CodedStatusMessageType describes the structure of an error or warning message which required a code.</xs:documentation>
