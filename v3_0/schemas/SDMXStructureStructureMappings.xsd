@@ -183,7 +183,7 @@
 							<xs:documentation>ComponentMap defines the relationship between the components of the source and target structures, including information on how the value from the source component relates to values in the target component.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
-					<xs:element name="FixedValueMap" type="FixedValueMapType" maxOccurs="unbounded">
+					<xs:element name="FixedValueMap" type="FixedValueMapType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
 							<xs:documentation>FixedValueMap defines a fixed value for a source or target component in the mapping.</xs:documentation>
 						</xs:annotation>
@@ -223,11 +223,7 @@
 				<xs:sequence>
 					<xs:element name="Source" type="common:IDType" maxOccurs="unbounded"/>
 					<xs:element name="Target" type="common:IDType" maxOccurs="unbounded"/>
-					<xs:choice>
-						<xs:element name="RepresentationMap" type="common:RepresentationMapReferenceType"/>
-						<xs:element name="EpochMap" type="common:IDType"/>
-						<xs:element name="DatePatternMap" type="common:IDType"/>
-					</xs:choice>
+					<xs:element name="RepresentationMap" type="common:RepresentationMapReferenceType" minOccurs="0"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -263,8 +259,10 @@
 		<xs:complexContent>
 			<xs:extension base="common:IdentifiableType">
 				<xs:sequence>
-					<xs:element name="Source" type="common:IDType"/>
-					<xs:element name="Target" type="common:IDType"/>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="Source" type="common:IDType"/>
+						<xs:element name="Target" type="common:IDType"/>
+					</xs:sequence>
 					<xs:choice>
 						<xs:sequence>
 								<xs:element name="FrequencyDimension" type="common:IDType"/>
@@ -291,8 +289,10 @@
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="Source" type="common:IDType"/>
-					<xs:element name="Target" type="common:IDType"/>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="Source" type="common:IDType"/>
+						<xs:element name="Target" type="common:IDType"/>
+					</xs:sequence>
 					<xs:choice>
 						<xs:sequence>
 								<xs:element name="FrequencyDimension" type="common:IDType"/>
@@ -324,8 +324,10 @@
 				<xs:sequence>
 					<xs:element ref="common:Annotations" minOccurs="0"/>
 					<xs:element ref="common:Link" minOccurs="0" maxOccurs="unbounded"/>
-					<xs:element name="Source" type="common:IDType"/>
-					<xs:element name="Target" type="common:IDType"/>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="Source" type="common:IDType"/>
+						<xs:element name="Target" type="common:IDType"/>
+					</xs:sequence>
 					<xs:choice>
 						<xs:sequence>
 								<xs:element name="FrequencyDimension" type="common:IDType"/>
