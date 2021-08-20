@@ -58,7 +58,7 @@
 		<xs:complexContent>
 			<xs:extension base="ItemBaseType">
 				<xs:choice minOccurs="0">
-					<xs:element name="Parent" type="common:LocalItemReferenceType"/>
+					<xs:element name="Parent" type="common:NestedIDType"/>
 					<xs:sequence maxOccurs="unbounded">
 						<xs:element ref="Item"/>
 					</xs:sequence>
@@ -190,7 +190,7 @@
 		<xs:complexContent>
 			<xs:extension base="common:MaintainableType">
 				<xs:sequence>
-					<xs:element name="Structure" type="common:StructureReferenceBaseType" minOccurs="0">
+					<xs:element name="Structure" type="common:StructureReferenceType" minOccurs="0">
 						<xs:annotation>
 							<xs:documentation>Structure references the structure (data structure or metadata structure definition) which the structure usage is based upon. Implementations will have to refine the type to use a concrete structure reference (i.e. either a data structure or metadata structure definition reference).</xs:documentation>
 						</xs:annotation>
@@ -211,7 +211,7 @@
 				</xs:annotation>
 			</xs:element>
 			<xs:sequence>
-				<xs:element name="Enumeration" type="common:EnumerationReferenceType">
+				<xs:element name="Enumeration" type="common:AnyCodelistReferenceType">
 					<xs:annotation>
 						<xs:documentation>Enumeration references an item scheme that enumerates the allowable values for this representation.</xs:documentation>
 					</xs:annotation>

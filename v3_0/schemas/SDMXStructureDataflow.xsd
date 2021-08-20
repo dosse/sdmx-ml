@@ -26,8 +26,9 @@
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
+				<xs:attribute name="urn" type="common:DataflowUrnType" use="optional"/>
 			</xs:restriction>
-		</xs:complexContent>		
+		</xs:complexContent>
 	</xs:complexType>
 	
 </xs:schema>

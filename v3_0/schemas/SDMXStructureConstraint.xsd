@@ -67,6 +67,7 @@
 					<xs:element name="ConstraintAttachment" type="DataConstraintAttachmentType" minOccurs="0"/>
 					<xs:element name="ReleaseCalendar" type="ReleaseCalendarType" minOccurs="0"/>
 				</xs:sequence>
+				<xs:attribute name="urn" type="common:DataConstraintUrnType" use="optional"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -107,6 +108,7 @@
 					<xs:element name="ConstraintAttachment" type="MetadataConstraintAttachmentType" minOccurs="0"/>
 					<xs:element name="ReleaseCalendar" type="ReleaseCalendarType" minOccurs="0"/>
 				</xs:sequence>
+				<xs:attribute name="urn" type="common:MetadataConstraintUrnType" use="optional"/>
 				<xs:attribute name="role" type="ConstraintRoleType" use="required" fixed="Allowed"/>
 			</xs:restriction>
 		</xs:complexContent>

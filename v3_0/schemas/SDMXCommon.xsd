@@ -282,7 +282,7 @@
 						<xs:documentation>The id is the identifier for the object.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
-				<xs:attribute name="urn" type="xs:anyURI" use="optional">
+				<xs:attribute name="urn" type="UrnType" use="optional">
 					<xs:annotation>
 						<xs:documentation>The urn attribute holds a valid SDMX Registry URN (see SDMX Registry Specification for details).</xs:documentation>
 					</xs:annotation>
@@ -355,6 +355,7 @@
 					<xs:element ref="Name" maxOccurs="unbounded"/>
 					<xs:element ref="Description" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
+				<xs:attribute name="urn" type="MaintainableUrnType" use="optional"/>
 				<xs:attribute name="id" type="IDType" use="required"/>
 			</xs:restriction>
 		</xs:complexContent>
@@ -793,12 +794,12 @@
 						<xs:documentation>ProvisionAgreement references a provision agreement which the data or metadata is reported against.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="StructureUsage" type="StructureUsageReferenceBaseType">
+				<xs:element name="StructureUsage" type="StructureUsageReferenceType">
 					<xs:annotation>
 						<xs:documentation>StructureUsage references a flow which the data or metadata is reported against.</xs:documentation>
 					</xs:annotation>
 				</xs:element>
-				<xs:element name="Structure" type="StructureReferenceBaseType">
+				<xs:element name="Structure" type="StructureReferenceType">
 					<xs:annotation>
 						<xs:documentation>Structure references the structure which defines the structure of the data or metadata set.</xs:documentation>
 					</xs:annotation>
