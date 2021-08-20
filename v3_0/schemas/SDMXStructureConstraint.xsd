@@ -154,14 +154,14 @@
 		</xs:sequence>
 	</xs:complexType>
 
-	<xs:complexType name="KeySetType" abstract="true">
+	<xs:complexType name="DataKeySetType">
 		<xs:annotation>
-			<xs:documentation>KeySetType is an abstract base type for defining a collection of keys.</xs:documentation>
+			<xs:documentation>DataKeySetType defines a collection of full or partial data keys (dimension values).</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="Key" type="DistinctKeyType" maxOccurs="unbounded">
+			<xs:element name="Key" type="DataKeyType" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>Key contains a data or metadata key, which are sets of component values which identify the data or metadata.</xs:documentation>
+					<xs:documentation>Key contains a set of dimension values which identify a full set of data.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -170,23 +170,6 @@
 				<xs:documentation>The isIncluded attribute indicates whether the keys defined in this key set are inclusive or exclusive to the constraint.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-	</xs:complexType>
-
-	<xs:complexType name="DataKeySetType">
-		<xs:annotation>
-			<xs:documentation>DataKeySetType defines a collection of full or partial data keys (dimension values).</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="KeySetType">
-				<xs:sequence>
-					<xs:element name="Key" type="DataKeyType" maxOccurs="unbounded">
-						<xs:annotation>
-							<xs:documentation>Key contains a set of dimension values which identify a full set of data.</xs:documentation>
-						</xs:annotation>
-					</xs:element>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
 	</xs:complexType>
 
 	<xs:complexType name="ConstraintAttachmentType" abstract="true">
@@ -427,17 +410,19 @@
 				<xs:documentation>The removePrefix attribute indicates whether codes should keep or not the prefix, as defined in the extension of codelist.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="validFrom" type="common:StandardTimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:StandardTimePeriodType" use="optional"/>
 	</xs:complexType>
 
-	<xs:complexType name="DistinctKeyType" abstract="true">
+	<xs:complexType name="DataKeyType">
 		<xs:annotation>
-			<xs:documentation>DistinctKeyType is an abstract base type which is a special type of region that only defines a distinct region of data. For each component defined in the region, only a single values is provided. However, the same rules that apply to the general region about unstated components being wild carded apply here as well. Thus, this type can define a distinct full or partial key for data.</xs:documentation>
+			<xs:documentation>DataKeyType is a region which defines a distinct full or partial data key. The key consists of a set of values, each referencing a dimension and providing a single value for that dimension. The purpose of the key is to define a subset of a data set (i.e. the observed value and data attribute) which have the dimension values provided in this definition. Any dimension not stated explicitly in this key is assumed to be wild carded, thus allowing for the definition of partial data keys.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="RegionType">
 				<xs:sequence>
-					<xs:element name="KeyValue" type="DinstinctKeyValueType"  maxOccurs="unbounded"/>
-					<xs:element name="Component" type="MemberSelectionType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="KeyValue" type="DataKeyValueType"  maxOccurs="unbounded"/>
+					<xs:element name="Component" type="ComponentValueSetType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="include" type="xs:boolean" use="optional" fixed="true">
 					<xs:annotation>
@@ -449,9 +434,9 @@
 		</xs:complexContent>
 	</xs:complexType>
 
-	<xs:complexType name="DinstinctKeyValueType" abstract="true">
+	<xs:complexType name="DataKeyValueType">
 		<xs:annotation>
-			<xs:documentation>DinstinctKeyValueType is an abstract base type which defines a singular, required value for a key component.</xs:documentation>
+			<xs:documentation>DataKeyValueType is a type for providing a dimension value for the purpose of defining a distinct data key. Only a single value can be provided for the dimension.</xs:documentation>
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:restriction base="MemberSelectionType">
@@ -460,34 +445,6 @@
 				</xs:choice>
 				<xs:attribute name="id" type="common:SingleNCNameIDType" use="required"/>
 				<xs:attribute name="include" type="xs:boolean" use="optional" fixed="true"/>
-			</xs:restriction>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="DataKeyType">
-		<xs:annotation>
-			<xs:documentation>DataKeyType is a region which defines a distinct full or partial data key. The key consists of a set of values, each referencing a dimension and providing a single value for that dimension. The purpose of the key is to define a subset of a data set (i.e. the observed value and data attribute) which have the dimension values provided in this definition. Any dimension not stated explicitly in this key is assumed to be wild carded, thus allowing for the definition of partial data keys.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="DistinctKeyType">
-				<xs:sequence>
-					<xs:element name="KeyValue" type="DataKeyValueType" maxOccurs="unbounded"/>
-					<xs:element name="Component" type="ComponentValueSetType" minOccurs="0" maxOccurs="unbounded"/>
-				</xs:sequence>
-			</xs:restriction>
-		</xs:complexContent>
-	</xs:complexType>
-
-	<xs:complexType name="DataKeyValueType">
-		<xs:annotation>
-			<xs:documentation>DataKeyValueType is a type for providing a dimension value for the purpose of defining a distinct data key. Only a single value can be provided for the dimension.</xs:documentation>
-		</xs:annotation>
-		<xs:complexContent>
-			<xs:restriction base="DinstinctKeyValueType">
-				<xs:sequence>
-					<xs:element name="Value" type="SimpleKeyValueType"/>
-				</xs:sequence>
-				<xs:attribute name="id" type="common:SingleNCNameIDType" use="required"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
