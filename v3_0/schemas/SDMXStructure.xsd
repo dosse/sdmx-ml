@@ -991,10 +991,10 @@
 
 	<xs:complexType name="UserDefinedOperatorSchemesType">
 		<xs:annotation>
-			<xs:documentation>UserDefinedOperatorsType describes the structure of the user defined operator schemes container. It contains one or more user defined operator scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+			<xs:documentation>UserDefinedOperatorSchemesType describes the structure of the user defined operator schemes container. It contains one or more user defined operator scheme, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="UserDefinedOperatorSchemesType" type="UserDefinedOperatorSchemeType" maxOccurs="unbounded">
+			<xs:element name="UserDefinedOperatorScheme" type="UserDefinedOperatorSchemeType" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>UserDefinedOperatorScheme provides the details of a user defined operator scheme, in which user defined operators are described.</xs:documentation>
 				</xs:annotation>
