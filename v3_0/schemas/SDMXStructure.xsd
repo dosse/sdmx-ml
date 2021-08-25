@@ -974,10 +974,10 @@
 
 	<xs:complexType name="TransformationSchemesType">
 		<xs:annotation>
-			<xs:documentation>TransformationsType describes the structure of the transformations container. It contains one or more transformation schemes, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
+			<xs:documentation>TransformationSchemesType describes the structure of the transformations container. It contains one or more transformation schemes, which can be explicitly detailed or referenced from an external structure document or registry service.</xs:documentation>
 		</xs:annotation>
 		<xs:sequence>
-			<xs:element name="TransformationSchemesType" type="TransformationSchemeType" maxOccurs="unbounded">
+			<xs:element name="TransformationScheme" type="TransformationSchemeType" maxOccurs="unbounded">
 				<xs:annotation>
 					<xs:documentation>TransformationScheme provides the details of a transformation scheme, in which transformations are described.</xs:documentation>
 				</xs:annotation>
