@@ -697,7 +697,7 @@
 		<xs:sequence>
 			<xs:element name="MetadataStructure" type="MetadataStructureType" maxOccurs="unbounded">
 				<xs:annotation>
-					<xs:documentation>MetadataStructure provides the details of a metadata structure definition, which is defined as a collection of metadata concepts, their structure and usage when used to collect or disseminate reference metadata. A metadata structure definition performs several functions: it groups sets of objects into "targets" against which reference metadata may be reported. Targets define the structure of the reference metadata "keys" which identify specific types of reported metadata, and describe the valid values for populating the keys. Also, metadata structure definitions provide a presentational organization of concepts for reporting purposes. The structure of a reference metadata report is derived from this presentational structure.</xs:documentation>
+					<xs:documentation>MetadataStructure provides the details of a metadata structure definition, which is defined as a collection of metadata concepts, their structure and usage when used to collect or disseminate reference metadata. A metadata structure definition performs several functions: it groups sets of objects into "targets" against which reference metadata may be reported. Targets define the structure of the reference metadata "keys" which identify specific types of reported metadata, and describe the valid values for populating the keys. Also, metadata structure definitions provide a presentational organization of concepts for reporting purposes. The structure of reference metadata is derived from this presentational structure.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
