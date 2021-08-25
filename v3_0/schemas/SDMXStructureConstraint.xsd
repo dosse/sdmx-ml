@@ -376,6 +376,8 @@
 				<xs:documentation>The include attribute indicates that the region is to be included or excluded within the context in which it is defined. For example, if the regions is defined as part of a content constraint, the exclude flag would mean the data identified by the region is not present.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
+		<xs:attribute name="validFrom" type="common:StandardTimePeriodType" use="optional"/>
+		<xs:attribute name="validTo" type="common:StandardTimePeriodType" use="optional"/>
 		<xs:anyAttribute namespace="##local"/>
 	</xs:complexType>
 
@@ -410,8 +412,6 @@
 				<xs:documentation>The removePrefix attribute indicates whether codes should keep or not the prefix, as defined in the extension of codelist.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
-		<xs:attribute name="validFrom" type="common:StandardTimePeriodType" use="optional"/>
-		<xs:attribute name="validTo" type="common:StandardTimePeriodType" use="optional"/>
 	</xs:complexType>
 
 	<xs:complexType name="DataKeyType">
@@ -421,7 +421,7 @@
 		<xs:complexContent>
 			<xs:restriction base="RegionType">
 				<xs:sequence>
-					<xs:element name="KeyValue" type="DataKeyValueType"  maxOccurs="unbounded"/>
+					<xs:element name="KeyValue" type="DataKeyValueType" minOccurs="0" maxOccurs="unbounded"/>
 					<xs:element name="Component" type="ComponentValueSetType" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attribute name="include" type="xs:boolean" use="optional" fixed="true">
