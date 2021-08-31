@@ -248,7 +248,7 @@
 		<xs:complexContent>
 			<xs:extension base="FrequencyFormatMappingBaseType">
 				<xs:sequence>
-					<xs:element name="FrequencyId" type="xs:string"/>
+					<xs:element name="FrequencyId" type="common:IDType"/>
 					<xs:element name="DatePattern" type="xs:string"/>
 				</xs:sequence>
 			</xs:extension>
