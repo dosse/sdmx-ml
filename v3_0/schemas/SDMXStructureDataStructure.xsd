@@ -394,7 +394,7 @@
 				</xs:sequence>
 				<xs:attribute name="position" type="xs:int" use="optional">
 					<xs:annotation>
-						<xs:documentation>The position attribute specifies the position of the dimension in the data structure definition. It is optional an the position of the dimension in the key descriptor (DimensionList element) always takes precedence over the value supplied here. This is strictly for informational purposes only.</xs:documentation>
+						<xs:documentation>The order of the dimensions in the key descriptor (DimensionList element) defines the order of the dimensions in the data structure. This position attribute explicitly specifies the position of the dimension in the data structure. It is optional and if specified must be consistent with the position of the dimension in the key descriptor.</xs:documentation>
 					</xs:annotation>
 				</xs:attribute>
 			</xs:extension>
