@@ -531,6 +531,8 @@
 					<xs:element name="TimeRange" type="TimeRangeValueType"/>
 				</xs:choice>
 				<xs:attribute name="id" type="common:NestedNCNameIDType" use="required"/>
+				<xs:attribute name="validFrom" type="common:StandardTimePeriodType" use="prohibited"/>
+				<xs:attribute name="validTo" type="common:StandardTimePeriodType" use="prohibited"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
@@ -545,6 +547,8 @@
 					<xs:element name="Value" type="SimpleComponentValueType" maxOccurs="unbounded"/>
 					<xs:element name="TimeRange" type="TimeRangeValueType"/>
 				</xs:choice>
+				<xs:attribute name="validFrom" type="common:StandardTimePeriodType" use="prohibited"/>
+				<xs:attribute name="validTo" type="common:StandardTimePeriodType" use="prohibited"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
