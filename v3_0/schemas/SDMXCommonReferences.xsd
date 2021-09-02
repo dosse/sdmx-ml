@@ -661,7 +661,6 @@
 	<xs:simpleType name="AnyCodelistReferenceType">
 		<xs:restriction base="MaintainableUrnReferenceType">
 			<xs:pattern value=".+\.codelist\.Codelist=.+"/>
-			<xs:pattern value=".+\.codelist\.Hierarchy=.+"/>
 			<xs:pattern value=".+\.codelist\.ValueList=.+"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -802,7 +801,7 @@
 	</xs:simpleType>
 
 	<xs:simpleType name="HierarchyReferenceType">
-		<xs:restriction base="AnyCodelistReferenceType">
+		<xs:restriction base="MaintainableUrnReferenceType">
 			<xs:pattern value=".+\.codelist\.Hierarchy=.+"/>
 		</xs:restriction>
 	</xs:simpleType>
