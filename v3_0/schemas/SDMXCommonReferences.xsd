@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright SDMX 2021 - http://www.sdmx.org -->
-<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" version="2.1_20130301">
+<xs:schema targetNamespace="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.sdmx.org/resources/sdmxml/schemas/v3_0/common">
 
 	
 	<xs:annotation>
@@ -9,15 +9,6 @@
 	</xs:annotation>
 
 	<!-- Identification and Reference Field Types -->
-	
-	<xs:element name="UrnTest" type="UrnTestType"/>
-	
-	<xs:complexType name="UrnTestType">
-		<xs:sequence>
-			<xs:element name="Urn" type="UrnPrefixPart" minOccurs="0" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
-	
 	<xs:simpleType name="UrnPrefixPart">
 		<xs:annotation>
 			<xs:documentation>This is validates the first part of the URN (urn:sdmx.org.infomodel.&lt;package>.&lt;class=). It is intended to be further restricted.</xs:documentation>
@@ -27,7 +18,6 @@
 		</xs:restriction>
 	</xs:simpleType>
 
-	<!-- TODO Keep Any? -->
 	<xs:simpleType name="UrnClassesPart">
 		<xs:annotation>
 			<xs:documentation>This refines the prefix to make specific restrictions of package and class values. Note that only one of the patterns must match. It is intended to be further restricted.</xs:documentation>
@@ -203,7 +193,7 @@
 		</xs:annotation>
 		<xs:restriction base="WildcardUrnVersionPart">
 			<xs:pattern value=".+\)(\.[A-Za-z0-9_@$\-]+(\.[A-Za-z0-9_@$\-]+)*)?"/>
-			<xs:pattern value=".+\)(\*(\.\*)*)?"/>
+			<xs:pattern value=".+\)(\.\*(\.\*)*)?"/>
 		</xs:restriction>
 	</xs:simpleType>
 
