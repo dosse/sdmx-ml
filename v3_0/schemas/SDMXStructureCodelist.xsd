@@ -352,10 +352,10 @@
 
 	<xs:simpleType name="WildcardedMemberValueType">
 		<xs:annotation>
-			<xs:documentation>WildcardedMemberValueType allows for an optional wildcard character ('%') at the end of an identifier.</xs:documentation>
+			<xs:documentation>WildcardedMemberValueType allows for an optional wildcard characters ('%') in an identifier.</xs:documentation>
 		</xs:annotation>
 		<xs:restriction base="xs:string">
-			<xs:pattern value="[A-Za-z0-9_@$-]+%?"/>
+			<xs:pattern value="[A-Za-z0-9_@$-%]+"/>
 		</xs:restriction>
 	</xs:simpleType>
 
