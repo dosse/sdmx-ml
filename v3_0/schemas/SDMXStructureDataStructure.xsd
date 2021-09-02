@@ -305,10 +305,10 @@
 		</xs:annotation>
 		<xs:complexContent>
 			<xs:extension base="DimensionListBaseType">
-				<xs:choice maxOccurs="unbounded">
-					<xs:element ref="Dimension"/>
-					<xs:element ref="TimeDimension"/>
-				</xs:choice>
+				<xs:sequence>
+					<xs:element ref="Dimension" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element ref="TimeDimension" minOccurs="0"/>
+				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -395,6 +395,7 @@
 				</xs:sequence>
 				<xs:attribute name="urn" type="common:TimeDimensionUrnType" use="optional"/>
 				<xs:attribute name="id" type="common:NCNameIDType" use="optional" fixed="TIME_PERIOD"/>
+				<xs:attribute name="position" type="xs:int" use="prohibited"/>
 			</xs:restriction>
 		</xs:complexContent>
 	</xs:complexType>
