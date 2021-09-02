@@ -477,7 +477,7 @@
 	</xs:simpleType>
 
 	<xs:simpleType name="TransitionUrnType">
-		<xs:restriction base="ComponentUrnType">
+		<xs:restriction base="UrnType">
 			<xs:pattern value=".+\.process\.Transition=.+"/>
 		</xs:restriction>
 	</xs:simpleType>
@@ -934,7 +934,7 @@
 	</xs:simpleType>
 
 	<xs:simpleType name="TransitionReferenceType">
-		<xs:restriction base="ComponentUrnReferenceType">
+		<xs:restriction base="UrnReferenceType">
 			<xs:pattern value=".+\.process\.Transition=.+"/>
 		</xs:restriction>
 	</xs:simpleType>
