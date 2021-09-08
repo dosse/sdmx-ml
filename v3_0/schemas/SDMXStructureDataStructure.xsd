@@ -154,7 +154,7 @@
 				<xs:sequence>
 					<xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
-							<xs:documentation>ConceptRole references concepts which define roles which this attribute serves. If the concept from which the attribute takes its identity also defines a role the concept serves, then the isConceptRole indicator can be set to true on the concept identity rather than repeating the reference here.</xs:documentation>
+							<xs:documentation>ConceptRole references concepts which define roles which this attribute serves.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 					<xs:element name="AttributeRelationship" type="AttributeRelationshipType">
@@ -338,7 +338,7 @@
 				<xs:sequence>
 					<xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
-							<xs:documentation>ConceptRole references concepts which define roles which this dimension serves. If the concept from which the attribute takes its identity also defines a role the concept serves, then the isConceptRole indicator can be set to true on the concept identity rather than repeating the reference here.</xs:documentation>
+							<xs:documentation>ConceptRole references concepts which define roles which this dimension serves.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -527,7 +527,7 @@
 				<xs:sequence>
 					<xs:element name="ConceptRole" type="common:ConceptReferenceType" minOccurs="0" maxOccurs="unbounded">
 						<xs:annotation>
-							<xs:documentation>ConceptRole references concepts which define roles which this measure serves. If the concept from which the attribute takes its identity also defines a role the concept serves, then the isConceptRole indicator can be set to true on the concept identity rather than repeating the reference here.</xs:documentation>
+							<xs:documentation>ConceptRole references concepts which define roles which this measure serves.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
