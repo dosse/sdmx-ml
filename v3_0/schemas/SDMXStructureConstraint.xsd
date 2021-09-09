@@ -86,7 +86,7 @@
 					</xs:element>
 					<xs:element name="CubeRegion" type="CubeRegionType" minOccurs="0" maxOccurs="2">
 						<xs:annotation>
-							<xs:documentation>CubeRegion defines a slice of the data set (dimensions and attribute values) for the constrained artefacet. A set of included and/or excluded regions can be described.</xs:documentation>
+							<xs:documentation>CubeRegion defines a slice of the data set (dimensions and attribute values) for the constrained artefact. A set of included or excluded regions can be described.</xs:documentation>
 						</xs:annotation>
 					</xs:element>
 				</xs:sequence>
@@ -408,7 +408,7 @@
 		</xs:attribute>
 		<xs:attribute name="include" type="xs:boolean" use="optional" default="true">
 			<xs:annotation>
-				<xs:documentation>The include attribute indicates whether the values provided for the referenced component are to be included are excluded from the region in which they are defined.</xs:documentation>
+				<xs:documentation>The include attribute indicates whether the values provided for the referenced component are to be included or excluded from the region in which they are defined.</xs:documentation>
 			</xs:annotation>
 		</xs:attribute>
 		<xs:attribute name="removePrefix" type="xs:boolean" use="optional">
