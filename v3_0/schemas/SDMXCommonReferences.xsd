@@ -140,6 +140,7 @@
 		<xs:restriction base="UrnMaintainableIdPart">
 			<xs:pattern value=".+\((0|[1-9]\d*)(\.(0|[1-9]\d*))?\).*"/>
 			<xs:pattern value=".+\((0|[1-9]\d*)(\.(0|[1-9]\d*)){2}(\-(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*))(\.(([A-Za-z\-]|([A-Za-z\-][A-Za-z0-9\-]+)|([A-Za-z0-9\-]+[A-Za-z\-][A-Za-z0-9\-]*))|(0|[1-9][0-9]*)))*)?\).*"/>
+			<xs:pattern value=".+\(\).*"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
@@ -153,6 +154,7 @@
 			<xs:pattern value=".+\(((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*))){2}\).*"/>
 			<xs:pattern value=".+\(((0|[1-9]\d*))(\.((0|[1-9]\d*)\+?))(\.((0|[1-9]\d*)))\).*"/>
 			<xs:pattern value=".+\(((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*)))(\.((0|[1-9]\d*)\+?))\).*"/>
+			<xs:pattern value=".+\(\).*"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -166,7 +168,7 @@
 			<xs:pattern value=".+\(((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*))){2}\).*"/>
 			<xs:pattern value=".+\(((0|[1-9]\d*))(\.((0|[1-9]\d*)\+?))(\.((0|[1-9]\d*)))\).*"/>
 			<xs:pattern value=".+\(((0|[1-9]\d*)\+?)(\.((0|[1-9]\d*)))(\.((0|[1-9]\d*)\+?))\).*"/>
-			<xs:pattern value=".+\(\*\).*"/>
+			<xs:pattern value=".+\(\).*"/>
 		</xs:restriction>
 	</xs:simpleType>
 
@@ -238,61 +240,61 @@
 
 	<xs:simpleType name="AgencyUrnType">
 		<xs:restriction base="ComponentUrnType">
-			<xs:pattern value=".+\.base\.Agency=.+:AGENCIES\(.+\).+"/>
+			<xs:pattern value=".+\.base\.Agency=.+:AGENCIES\(\).+"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
 	<xs:simpleType name="AgencySchemeUrnType">
 		<xs:restriction base="MaintainableUrnType">
-			<xs:pattern value=".+\.base\.AgencyScheme=.+:AGENCIES\(.+\)"/>
+			<xs:pattern value=".+\.base\.AgencyScheme=.+:AGENCIES\(\)"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
 	<xs:simpleType name="DataConsumerUrnType">
 		<xs:restriction base="ComponentUrnType">
-			<xs:pattern value=".+\.base\.DataConsumer=.+:DATA_CONSUMERS\(.+\).+"/>
+			<xs:pattern value=".+\.base\.DataConsumer=.+:DATA_CONSUMERS\(\).+"/>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:simpleType name="DataConsumerSchemeUrnType">
 		<xs:restriction base="MaintainableUrnType">
-			<xs:pattern value=".+\.base\.DataConsumerScheme=.+:DATA_CONSUMERS\(.+\)"/>
+			<xs:pattern value=".+\.base\.DataConsumerScheme=.+:DATA_CONSUMERS\(\)"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
 	<xs:simpleType name="DataProviderUrnType">
 		<xs:restriction base="ComponentUrnType">
-			<xs:pattern value=".+\.base\.DataProvider=.+:DATA_PROVIDERS\(.+\).+"/>
+			<xs:pattern value=".+\.base\.DataProvider=.+:DATA_PROVIDERS\(\).+"/>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:simpleType name="DataProviderSchemeUrnType">
 		<xs:restriction base="MaintainableUrnType">
-			<xs:pattern value=".+\.base\.DataProviderScheme=.+:DATA_PROVIDERS\(.+\)"/>
+			<xs:pattern value=".+\.base\.DataProviderScheme=.+:DATA_PROVIDERS\(\)"/>
 		</xs:restriction>
 	</xs:simpleType>
 	
 	<xs:simpleType name="MetadataProviderUrnType">
 		<xs:restriction base="ComponentUrnType">
-			<xs:pattern value=".+\.base\.MetadataProvider=.+:METADATA_PROVIDERS\(.+\).+"/>
+			<xs:pattern value=".+\.base\.MetadataProvider=.+:METADATA_PROVIDERS\(\).+"/>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:simpleType name="MetadataProviderSchemeUrnType">
 		<xs:restriction base="MaintainableUrnType">
-			<xs:pattern value=".+\.base\.MetadataProviderScheme=.+:METADATA_PROVIDERS\(.+\)"/>
+			<xs:pattern value=".+\.base\.MetadataProviderScheme=.+:METADATA_PROVIDERS\(\)"/>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:simpleType name="OrganisationUnitUrnType">
 		<xs:restriction base="ComponentUrnType">
-			<xs:pattern value=".+\.base\.OrganisationUnit=.+"/>
+			<xs:pattern value=".+\.base\.OrganisationUnit=.+\(\).+"/>
 		</xs:restriction>
 	</xs:simpleType>
 
 	<xs:simpleType name="OrganisationUnitSchemeUrnType">
 		<xs:restriction base="MaintainableUrnType">
-			<xs:pattern value=".+\.base\.OrganisationUnitScheme=.+"/>
+			<xs:pattern value=".+\.base\.OrganisationUnitScheme=.+\(\)"/>
 		</xs:restriction>
 	</xs:simpleType>
 
